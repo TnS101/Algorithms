@@ -15,7 +15,7 @@ var addTwoNumbers = function(l1, l2) {
     for (let index = sum.toString().length - 1; index >= 0; index--) {
         result.push(Number(sum.toString().charAt(index)));
     }
-
+    console.log(result);
     return result;
 };
 
