@@ -2,10 +2,14 @@ var isValid = function (s) {
     for (let i = 0; i < s.length; i++) {
         const char = s[i];
         var validChar = validCharGen(char);
-        if (s.split('').find(c => c == validChar) === undefined) return false;
+        console.log(s);
+        if (s.split('').find(c => c == validChar) === undefined || s.length % 2 != 0) return false;
 
-        validChar = s.split('').find(c => c == validChar);
+        validChar = s.split('').filter(c => c == validChar);
         if (s.indexOf(char) - s.indexOf(validChar) % 2 == 0) return false;
+        s = s.split('').splice(s.charAt(char), 1).join('');
+        s = s.split('').splice(s.charAt(validChar), 1).join('');
+        console.log(s);
     }
 
     function validCharGen(char) {
@@ -21,3 +25,7 @@ var isValid = function (s) {
 };
 
 console.log(isValid('(([]){})'));
+console.log(isValid('()'));
+console.log(isValid(
+    "([)]"));
+console.log(isValid('{{)}'));
