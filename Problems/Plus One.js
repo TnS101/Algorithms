@@ -1,14 +1,12 @@
 var plusOne = function (digits) {
-    let willIncrement = false;
     for (let i = digits.length - 1; i >= 0; i--) {
         let element = digits[i];
-        if (element + 1 == 10 || element == 0 && willIncrement == true) {
+        if (element + 1 == 10) {
             if (digits[i - 1] === undefined) {
                 digits.push(1);
                 digits[i] = 0;
                 return digits.reverse();
             }
-            willIncrement = true;
             digits[i] = 0;
 
         } else {
@@ -20,4 +18,4 @@ var plusOne = function (digits) {
     return digits;
 };
 
-console.log(plusOne([9]));
+console.log(plusOne([3, 9, 9]));
