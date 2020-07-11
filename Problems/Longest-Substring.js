@@ -1,4 +1,4 @@
-var lengthOfLongestSubstring = function(s) {
+var lengthOfLongestSubstring = function (s) {
     let result = '';
 
     if (s.length < 2) {
@@ -11,7 +11,7 @@ var lengthOfLongestSubstring = function(s) {
     for (let index = 0; index < s.length; index++) {
 
         if (character != s[index] && !result.includes(character)) {
-            result = s.substr(lastIndex, index);
+            result = s.slice(lastIndex, index);
         } else {
             lastIndex = index;
         }
@@ -19,7 +19,6 @@ var lengthOfLongestSubstring = function(s) {
         character = s[index];
     }
     console.log(result);
-    console.log(result.length);
     return result.length;
 };
 
@@ -29,4 +28,4 @@ lengthOfLongestSubstring(
 lengthOfLongestSubstring(
     "abcabcbb");
 
-lengthOfLongestSubstring("bbbbb");
+console.log(lengthOfLongestSubstring("bbbbb"));
