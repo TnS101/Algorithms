@@ -1,21 +1,16 @@
 var pivotIndex = function (nums) {
-    const outter = [0];
+    let sum = 0;
     for (let i = 0; i < nums.length; i++) {
-
-        if (sum(outter) + nums[i] === sum(nums)) {
-            return outter.length - 1;
+        const element = nums[i];
+        if (sum + element ==
+            nums.reduce(function (a, b) {
+                return a + b;
+            }) - sum) {
+            return i;
         }
 
-        outter.push(nums.shift(nums[i]));
-        i--;
+        sum += element;
     }
-
-    function sum(arr) {
-        return arr.reduce(function (a, b) {
-            return a + b;
-        });
-    }
-
     return -1;
 };
 
