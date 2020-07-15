@@ -9,7 +9,6 @@ var spiralOrder = function (matrix) {
             continue;
         }
         for (let j = 1; j < row.length - 1; j++) {
-            //result.push(row[row.length - 1]);
             if (result.length >= row.length) break;
             continue;
         }
