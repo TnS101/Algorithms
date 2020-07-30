@@ -4,15 +4,16 @@ var findSpecialInteger = function(array) {
     if (array.length == 1) {
         return array[0];
     }
-    for (let i = 0; i < array.length; i++) {
-        const element = array[i];
-        if (array[i] == array[i + 1]) {
+    array.reduce(function(pr, curr, i) {
+        if (array[i - 1] == curr) {
             sum++;
         } else {
             sum = 0;
         }
         if (sum >= 0.25 * array.length) {
-            return element;
+            return curr;
         }
-    }
+    });
 };
+
+console.log(findSpecialInteger([1, 2, 3, 3, 5, 6]));

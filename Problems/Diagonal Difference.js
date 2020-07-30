@@ -1,13 +1,17 @@
 function solve(matrix) {
     let leftSum = 0;
-    for (let i = 0; i < matrix.length; i++) {
-        const row = matrix[i];
+
+    matrix.reduce(function(acc, curr, i) {
+        let row = acc;
+        if (row === undefined) row = matrix[i];
+
         for (let j = 0; j < row.length; j++) {
             leftSum += row[i];
-            leftSum -= row[row.length - 1 - i];
+            console.log(row[i]);
+            leftSum -= row[row.length - i - 1];
             break;
         }
-    }
+    });
 
     return Math.abs(leftSum);
 }
