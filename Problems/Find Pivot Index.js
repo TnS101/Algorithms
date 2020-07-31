@@ -1,9 +1,9 @@
-var pivotIndex = function (nums) {
+var pivotIndex = function(nums) {
     let sum = 0;
     for (let i = 0; i < nums.length; i++) {
         const element = nums[i];
         if (sum + element ==
-            nums.reduce(function (a, b) {
+            nums.reduce(function(a, b) {
                 return a + b;
             }) - sum) {
             return i;

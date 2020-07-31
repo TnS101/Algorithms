@@ -6,8 +6,7 @@ function solution(input) {
 
     let array = input.split(', ');
 
-    for (let i = 0; i < array.length; i++) {
-        let word = array[i];
+    array.reduce(function(pr, word, i) {
         let checkLine = [];
         let counter = 0;
 
@@ -33,7 +32,8 @@ function solution(input) {
                 result.push(word);
             }
         }
-    }
+    }, 0);
+
     return result.join(', ');
 }
 

@@ -3,15 +3,12 @@ var maxArea = function(height) {
 
     if (height.length < 3) {
         if (largest == height[1]) {
-            //console.log(largest);
             return largest;
         }
         return largest < height[1] ? largest : height[1];
     }
 
-    for (let index = 1; index < height.length; index++) {
-        let element = height[index];
-
+    height.reduce(function(pr, element, index) {
         if (element >= largest) {
             largest = element;
         }
@@ -22,7 +19,7 @@ var maxArea = function(height) {
             console.log(element * (index - 1), element, index);
             return element * (index - 1);
         }
-    }
+    });
 };
 
 maxArea([1, 8, 6, 2, 5, 4, 8, 3, 7]);

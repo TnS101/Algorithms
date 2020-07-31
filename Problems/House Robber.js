@@ -1,5 +1,6 @@
-var rob = function (nums) {
+var rob = function(nums) {
     let sum = 0;
+
     for (let i = 0; i < nums.length; i++) {
         const element = nums[i];
         const next = nums[i + 1];

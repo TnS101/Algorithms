@@ -1,16 +1,15 @@
-var maxProfit = function (prices) {
+var maxProfit = function(prices) {
     let sum = 0;
-    for (let i = 0; i < prices.length; i++) {
+    prices.reduce(function(pr, curr, i) {
         if (i % 2 != 0) {
-            const buy = prices[i];
             for (let j = i; j < prices.length; j++) {
                 const element = prices[j];
-                if (element - buy > sum) {
-                    sum = element - buy;
+                if (element - curr > sum) {
+                    sum = element - curr;
                 }
             }
         }
-    }
+    }, 0);
 
     return sum;
 };

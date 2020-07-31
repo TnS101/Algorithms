@@ -1,8 +1,8 @@
-var combinationSum = function (candidates, target) {
+var combinationSum = function(candidates, target) {
     let sum = 0;
     const result = [];
-    for (let i = 0; i < candidates.length; i++) {
-        const element = candidates[i];
+
+    candidates.reduce(function(pr, element, i) {
         let currentSet = [];
         while (sum <= target - element) {
 
@@ -24,7 +24,7 @@ var combinationSum = function (candidates, target) {
 
         }
         sum = 0;
-    }
+    }, 0);
 
     function directPush(currentSet, candidate) {
         currentSet.push(candidate);

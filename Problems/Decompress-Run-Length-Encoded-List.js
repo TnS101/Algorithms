@@ -1,13 +1,13 @@
 var decompressRLElist = function(array) {
     let result = [];
 
-    for (let index = 0; index < array.length; index++) {
+    array.reduce(function(acc, curr, index) {
         if (index % 2 == 0) {
-            for (let i = 0; i < array[index]; i++) {
+            for (let i = 0; i < curr; i++) {
                 result.push(array[index + 1]);
             }
         }
-    }
+    });
 
     return result;
 };

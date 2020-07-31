@@ -2,19 +2,21 @@ var addTwoNumbers = function(l1, l2) {
     let num1 = '';
     let num2 = '';
 
-    for (let index = l1.length - 1; index >= 0; index--) {
-        num1 += l1[index];
-    }
+    l1.reduceRight(function(acc, curr) {
+        num1 += curr;
+    }, 0);
 
-    for (let index = l2.length - 1; index >= 0; index--) {
-        num2 += l2[index];
-    }
+    l2.reduceRight(function(acc, curr) {
+        num2 += curr;
+    }, 0);
 
     let sum = Number(num1) + Number(num2);
     let result = [];
-    for (let index = sum.toString().length - 1; index >= 0; index--) {
-        result.push(Number(sum.toString().charAt(index)));
-    }
+
+    sum.toString().split('').reduceRight(function(acc, curr) {
+        result.push(Number(curr));
+    }, 0);
+
     console.log(result);
     return result;
 };

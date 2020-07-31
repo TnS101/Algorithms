@@ -1,12 +1,13 @@
 var findNumbers = function(array) {
     let result = 0;
 
-    for (let index = 0; index < array.length; index++) {
-        if (String(array[index]).length % 2 == 0) {
+    array.reduce(function(acc, curr) {
+        if (String(curr).length % 2 == 0) {
             result++;
         }
-    }
+    }, 0);
+
     return result;
 };
 
-findNumbers([12, 345, 2, 6, 7896]);
+console.log(findNumbers([12, 345, 2, 6, 7896]));

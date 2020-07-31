@@ -1,4 +1,4 @@
-var firstMissingPositive = function (nums) {
+var firstMissingPositive = function(nums) {
     if (nums.length == 0) return 1;
     nums.sort((a, b) => a - b);
     for (let i = 0; i < nums.length; i++) {
