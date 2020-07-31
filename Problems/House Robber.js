@@ -1,7 +1,7 @@
 var rob = function(nums) {
     let sum = 0;
 
-    for (let i = 0; i < nums.length; i++) {
+    nums.reduce(function(acc, curr, i) {
         const element = nums[i];
         const next = nums[i + 1];
 
@@ -17,7 +17,7 @@ var rob = function(nums) {
             sum += element;
             i++;
         }
-    }
+    }, 0);
 
     return sum;
 };

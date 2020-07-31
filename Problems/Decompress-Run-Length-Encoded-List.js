@@ -7,7 +7,7 @@ var decompressRLElist = function(array) {
                 result.push(array[index + 1]);
             }
         }
-    });
+    }, 0);
 
     return result;
 };

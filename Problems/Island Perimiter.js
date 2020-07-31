@@ -1,8 +1,9 @@
 var islandPerimeter = function(grid) {
     let result = 0;
-    for (let i = 0; i < grid.length; i++) {
+
+    grid.reduce(function(acc, curr, i) {
         const row = grid[i];
-        for (let j = 0; j < row.length; j++) {
+        row.reduce(function(acc, curr, j) {
             if (row[j] == 1) {
                 if (row[j + 1] != 1) result++;
                 if (row[j - 1] != 1) result++;
@@ -14,8 +15,8 @@ var islandPerimeter = function(grid) {
                 if (grid[i - 1] === undefined) result++;
 
             }
-        }
-    }
+        }, 0);
+    }, 0);
 
     return result;
 };

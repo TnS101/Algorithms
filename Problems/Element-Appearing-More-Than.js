@@ -13,7 +13,7 @@ var findSpecialInteger = function(array) {
         if (sum >= 0.25 * array.length) {
             return curr;
         }
-    });
+    }, 0);
 };
 
 console.log(findSpecialInteger([1, 2, 3, 3, 5, 6]));
