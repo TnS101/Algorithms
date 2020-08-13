@@ -7,7 +7,7 @@
     {
         static void Main(string[] args)
         {
-            Console.WriteLine(new StringOperations().HighestOccuredCharacter("aaaazzzrr"));
+            new StringOperations().FindAllSubstringsInAString("DENEME");
         }
     }
 

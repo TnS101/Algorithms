@@ -67,7 +67,7 @@
             return true;
         }
 
-        public string ReverseAStringWithItteration(string input) 
+        public string ReverseAStringWithItteration(string input)
         {
             for (int i = input.Length - 1; i >= 0; i--)
             {
@@ -77,12 +77,12 @@
             return sb.ToString();
         }
 
-        public int NumberOfWords(string input) 
+        public int NumberOfWords(string input)
         {
             return input.Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries).Length;
         }
 
-        public bool IsPalindrome(string input) 
+        public bool IsPalindrome(string input)
         {
             for (int i = 0; i < input.Length; i++)
             {
@@ -95,7 +95,7 @@
             return true;
         }
 
-        public char HighestOccuredCharacter(string input) 
+        public char HighestOccuredCharacter(string input)
         {
             var count = 0;
             var dict = new Dictionary<char, int>();
@@ -112,8 +112,38 @@
                     count = 0;
                 }
             }
-            
+
             return dict.OrderByDescending(e => e.Value).FirstOrDefault().Key;
+        }
+
+        public bool IsFromUniqueCharacters(string input)
+        {
+            for (int i = 0; i < input.Length; i++)
+            {
+                if (input[i] == input[input.Length - 1 - i])
+                {
+                    return false;
+                }
+            }
+
+            return true;
+        }
+
+        public string ReplaceAllSpacesInAString(string input, string key)
+        {
+            return String.Join(key, input.Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries));
+        }
+
+        public void FindAllSubstringsInAString(string value) 
+        {
+            for (int i = 1; i < value.Length; i++)
+            {
+                for (int j = 0; j <= value.Length - i; j++)
+                {
+                    string substring = value.Substring(j, i);
+                    Console.WriteLine(substring);
+                }
+            }
         }
     }
 }
