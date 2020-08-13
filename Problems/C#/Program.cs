@@ -7,7 +7,8 @@ namespace Interview_Prep
     {
         static void Main(string[] args)
         {
-
+            Console.WriteLine(new StringOperations().AreAnagrams("helo", "oleh"));
+            Console.WriteLine(new StringOperations().ReverseAStringWithItteration("hello"));
         }
     }
 
