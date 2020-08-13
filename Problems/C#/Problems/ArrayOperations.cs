@@ -8,15 +8,15 @@
     {
         public void RotateArrayToPivot(int pivot)
         {
-            int[] x = { 1, 5, 3, 6, 7, 8, 9, 11, 12 };
-            var y = new List<int>(x.Skip(pivot).Take(x.Length - pivot));
-            y.AddRange(x.Take(pivot));
-            int[] rotatedArray = y.ToArray();
+            int[] input = { 1, 5, 3, 6, 7, 8, 9, 11, 12 };
 
-            foreach (var item in rotatedArray)
-            {
-                Console.WriteLine(item);
-            }
+            var tempList = new List<int>(input.Skip(pivot).Take(input.Length - pivot));
+
+            tempList.AddRange(input.Take(pivot));
+
+            int[] rotatedArray = tempList.ToArray();
+
+            this.PrinArray(rotatedArray);
         }
 
         public bool CheckSumFromTwoArrays(int[] arr1, int[] arr2, int target)
@@ -51,11 +51,75 @@
             return false;
         }
 
-        public void SortArrayInDescendingOrder(int[] arr) 
+        public void SortArrayInDescendingOrder(int[] arr)
         {
             Array.Sort(arr);
             Array.Reverse(arr);
 
+            this.PrinArray(arr);
+        }
+
+        public void ReverseAnArray(int[] arr)
+        {
+            Array.Reverse(arr);
+            this.PrinArray(arr);
+        }
+
+        public void BubbleSort(int[] arr)
+        {
+            Array.Sort(arr);
+
+            for (int i = 0; i < arr.Length / 2; i++)
+            {
+                var temp = arr[i];
+
+                arr[i] = arr[arr.Length - i - 1];
+
+                arr[arr.Length - i - 1] = temp;
+            }
+
+            this.PrinArray(arr);
+        }
+
+        public void SwapMinAndMaxIntegers(int[] arr)
+        {
+            Array.Sort(arr);
+
+            var temp = arr[0];
+
+            arr[0] = arr[^1];
+
+            arr[^1] = temp;
+
+            this.PrinArray(arr);
+        }
+
+        public bool CheckForDuplicateNumber(int[] arr)
+        {
+            Array.Sort(arr);
+            for (int i = 1; i < arr.Length; i++)
+            {
+                if (arr[i - 1] == arr[i])
+                {
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
+        public int FindMajorityElementInUnsortedArray(int[] arr)
+        {
+            if (arr.Any(e => arr.Count(c => c == e) > arr.Length / 2))
+            {
+                return arr.FirstOrDefault(e => arr.Count(c => c == e) > arr.Length / 2);
+            }
+
+            return -1;
+        }
+
+        private void PrinArray(int[] arr)
+        {
             for (int i = 0; i < arr.Length; i++)
             {
                 Console.WriteLine(arr[i]);

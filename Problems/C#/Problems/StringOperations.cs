@@ -84,7 +84,7 @@
 
         public bool IsPalindrome(string input)
         {
-            for (int i = 0; i < input.Length; i++)
+            for (int i = 0; i < input.Length / 2; i++)
             {
                 if (input[i] != input[input.Length - 1 - i])
                 {
@@ -118,7 +118,7 @@
 
         public bool IsFromUniqueCharacters(string input)
         {
-            for (int i = 0; i < input.Length; i++)
+            for (int i = 0; i < input.Length / 2; i++)
             {
                 if (input[i] == input[input.Length - 1 - i])
                 {

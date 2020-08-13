@@ -7,7 +7,7 @@
     {
         static void Main(string[] args)
         {
-            new ArrayOperations().SortArrayInDescendingOrder(new int[] {1,2,3,8,1,10 });
+            Console.WriteLine(new ArrayOperations().FindMajorityElementInUnsortedArray(new int[] { 1, 1, 1, 1, 1, 9, }));
         }
     }
 
