@@ -76,5 +76,44 @@
 
             return sb.ToString();
         }
+
+        public int NumberOfWords(string input) 
+        {
+            return input.Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries).Length;
+        }
+
+        public bool IsPalindrome(string input) 
+        {
+            for (int i = 0; i < input.Length; i++)
+            {
+                if (input[i] != input[input.Length - 1 - i])
+                {
+                    return false;
+                }
+            }
+
+            return true;
+        }
+
+        public char HighestOccuredCharacter(string input) 
+        {
+            var count = 0;
+            var dict = new Dictionary<char, int>();
+
+            for (int i = 1; i < input.Length; i++)
+            {
+                if (input[i - 1] == input[i])
+                {
+                    count++;
+                }
+                else
+                {
+                    dict.Add(input[i - 1], count);
+                    count = 0;
+                }
+            }
+            
+            return dict.OrderByDescending(e => e.Value).FirstOrDefault().Key;
+        }
     }
 }

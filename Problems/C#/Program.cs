@@ -1,14 +1,13 @@
-﻿using Interview_Prep.Problems;
-using System;
-
-namespace Interview_Prep
+﻿namespace Interview_Prep
 {
+    using Interview_Prep.Problems;
+    using System;
+
     public class Program
     {
         static void Main(string[] args)
         {
-            Console.WriteLine(new StringOperations().AreAnagrams("helo", "oleh"));
-            Console.WriteLine(new StringOperations().ReverseAStringWithItteration("hello"));
+            Console.WriteLine(new StringOperations().HighestOccuredCharacter("aaaazzzrr"));
         }
     }
 
