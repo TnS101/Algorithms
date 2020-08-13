@@ -118,6 +118,44 @@
             return -1;
         }
 
+        public void MergeSort(int[] arr1, int[] arr2)
+        {
+
+        }
+
+        public int FindMissingInteger(int[] arr)
+        {
+            for (int i = 0; i < arr.Length / 2; i++)
+            {
+                if (arr[i] + 1 != arr[i + 1])
+                {
+                    return arr[i + 1] + 1;
+                }
+
+                if (arr[arr.Length - 1 - i] - 1 != arr[arr.Length - 2 - i])
+                {
+                    return arr[arr.Length - 1 - i] - 1;
+                }
+            }
+
+            return -1;
+        }
+
+        public void MoveZeroesAtTheEnd(int[] arr) 
+        {
+            Array.Sort(arr);
+
+            for (int i = 0; i < arr.Length / 2; i++)
+            {
+                var temp = arr[i];
+
+                arr[i] = arr[arr.Length - 1 - i];
+                arr[arr.Length - 1 - i] = temp;
+            }
+
+            this.PrinArray(arr);
+        }
+
         private void PrinArray(int[] arr)
         {
             for (int i = 0; i < arr.Length; i++)

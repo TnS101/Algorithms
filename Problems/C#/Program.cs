@@ -7,7 +7,7 @@
     {
         static void Main(string[] args)
         {
-            Console.WriteLine(new ArrayOperations().FindMajorityElementInUnsortedArray(new int[] { 1, 1, 1, 1, 1, 9, }));
+            new ArrayOperations().MoveZeroesAtTheEnd(new int[] { 1, 3, 5, 3, 4, 0, 5, 0, 9, 8, 1, 0, 3, 65, 0, 0, 3, 4, 5, 6 });
         }
     }
 
