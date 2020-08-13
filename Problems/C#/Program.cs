@@ -7,7 +7,7 @@
     {
         static void Main(string[] args)
         {
-            new StringOperations().FindAllSubstringsInAString("DENEME");
+            new ArrayOperations().RotateArrayToPivot(new int[] {1,2,3,4,5 }, 2);
         }
     }
 
