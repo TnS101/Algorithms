@@ -1,4 +1,4 @@
-﻿namespace Interview_Prep.Fundaments
+﻿namespace Interview_Prep.Fundaments.SearchingAlgorithms
 {
     public class LinearSearch
     {

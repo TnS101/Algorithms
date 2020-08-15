@@ -72,22 +72,6 @@
             this.PrinArray(arr);
         }
 
-        public void BubbleSort(int[] arr, int left, int right)
-        {
-            Array.Sort(arr);
-
-            for (int i = left; i < right / 2; i++)
-            {
-                var temp = arr[i];
-
-                arr[i] = arr[right - i - 1];
-
-                arr[right - i - 1] = temp;
-            }
-
-            this.PrinArray(arr);
-        }
-
         public void SwapMinAndMaxIntegers(int[] arr)
         {
             Array.Sort(arr);
@@ -159,19 +143,6 @@
             this.PrinArray(result);
         }
 
-        public void MergeSort(int[] arr, int left, int right)
-        {
-            if (left < right)
-            {
-                int middle = (left + right) / 2;
-
-                this.MergeSort(arr, left, middle);
-                this.MergeSort(arr, middle + 1, right);
-
-                this.Merge(arr, left, middle, right);
-            }
-        }
-
         public int FindMissingInteger(int[] arr)
         {
             for (int i = 0; i < arr.Length / 2; i++)
@@ -205,46 +176,7 @@
             this.PrinArray(arr);
         }
 
-        private void Merge(int[] arr, int left, int middle, int right)
-        {
-            var leftLength = middle - left + 1;
-            var rightLength = right - middle;
-
-            int[] leftArr = new int[leftLength];
-            int[] rightArr = new int[rightLength];
-
-            Array.Copy(arr, left, leftArr, 0, leftLength);
-            Array.Copy(arr, middle + 1, rightArr, 0, rightLength);
-
-            int i = 0;
-            int j = 0;
-
-            for (int k = left; k <= right; k++)
-            {
-                if (i == leftLength)
-                {
-                    arr[k] = rightArr[j];
-                    j++;
-                }
-                else if (j == rightLength)
-                {
-                    arr[k] = leftArr[i];
-                    i++;
-                }
-                else if (leftArr[i] <= rightArr[j])
-                {
-                    arr[k] = leftArr[i];
-                    i++;
-                }
-                else
-                {
-                    arr[k] = rightArr[j];
-                    j++;
-                }
-            }
-        }
-
-        private void PrinArray(int[] arr)
+        public void PrinArray(int[] arr)
         {
             sb.Append("[ ");
             for (int i = 0; i < arr.Length; i++)
