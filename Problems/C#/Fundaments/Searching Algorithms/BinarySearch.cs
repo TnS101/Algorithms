@@ -10,32 +10,25 @@
 
         public int Execute(int value)
         {
-            var position = this.array.Length % 2 == 0 ? (this.array.Length / 2) - 1 : (this.array.Length - 1) / 2;
-            var middle = this.array[position];
+            var start = 0;
+            var end = this.array.Length;
 
-            if (middle < value)
+            while (start < end)
             {
-                for (int i = position; i < array.Length; i++)
+                var middle = (start + end) / 2;
+
+                if (this.array[middle] < value)
                 {
-                    if (array[i] == value)
-                    {
-                        return i;
-                    }
+                    start = middle + 1;
                 }
-            }
-            else if (middle > value)
-            {
-                for (int i = position; i > 0; i--)
+                else if (this.array[middle] > value)
                 {
-                    if (array[i] == value)
-                    {
-                        return i;
-                    }
+                    end = middle - 1;
                 }
-            }
-            else if (middle == value)
-            {
-                return position;
+                else
+                {
+                    return start;
+                }
             }
 
             return -1;

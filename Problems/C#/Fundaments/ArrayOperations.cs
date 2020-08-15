@@ -88,7 +88,7 @@
         public bool CheckForDuplicateNumber(int[] arr)
         {
             Array.Sort(arr);
-            for (int i = 1; i < arr.Length; i++)
+            for (int i = 1; i < arr.Length / 2; i++)
             {
                 if (arr[i - 1] == arr[i])
                 {
@@ -97,6 +97,30 @@
             }
 
             return false;
+        }
+
+        public int OneRepeatingNumber(int[] arr) 
+        {
+            var sum = 0;
+
+            for (int i = 0; i < arr.Length; i++)
+            {
+                sum += arr[i];
+            }
+
+            return sum - arr.Length * (arr.Length - 1) / 2;
+        }
+
+        public int OneMissingNumber(int[] arr) 
+        {
+            var sum = 0;
+
+            for (int i = 0; i < arr.Length; i++)
+            {
+                sum += arr[i];
+            }
+
+            return (arr.Length + 1) * (arr.Length + 2) / 2 - sum;
         }
 
         public int FindMajorityElementInUnsortedArray(int[] arr)

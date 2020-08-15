@@ -26,6 +26,16 @@
             }
         }
 
+        public double AngleBetweenClockArrows(int hour, int minutes) 
+        {
+            if (hour > 12)
+            {
+                hour -= 12;
+            }
+
+            return Math.Abs((hour * 30) - (minutes * 6));
+        }
+
         public int FindGCD(int num1, int num2)
         {
             if (num1 != 0 && num2 != 0)
