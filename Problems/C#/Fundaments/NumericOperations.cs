@@ -4,17 +4,29 @@
 
     public class NumericOperations
     {
-        public void SwapNumberValues(int num1, int num2) 
+        public void SwapNumberValues(int num1, int num2)
         {
             num1 = num2 ^ num1;
-            num2 = num2 ^ num1;
-            num1 = num1 ^ num2;
+            num2 ^= num1;
+            num1 ^= num2;
 
             Console.WriteLine(num1);
             Console.WriteLine(num2);
         }
 
-        public int FindGCD(int num1, int num2) 
+        public int SumOfDigits(int num)
+        {
+            if (num != 0)
+            {
+                return (num % 10 + this.SumOfDigits(num / 10));
+            }
+            else
+            {
+                return 0;
+            }
+        }
+
+        public int FindGCD(int num1, int num2)
         {
             if (num1 != 0 && num2 != 0)
             {
@@ -31,7 +43,25 @@
             return num1 | num2;
         }
 
-        public bool IsPrime(int num) 
+        public bool IsPalindrome(int num)
+        {
+            var reverse = 0;
+            var initValue = num;
+
+            while (num > 0)
+            {
+                var remainder = num % 10;
+                reverse = reverse * 10 + remainder;
+                num /= 10;
+            }
+
+            Console.WriteLine(initValue);
+            Console.WriteLine(reverse);
+
+            return initValue == reverse ? true : false;
+        }
+
+        public bool IsPrime(int num)
         {
             if (num <= 1)
             {
@@ -51,7 +81,7 @@
             return factorCount > 2 ? false : true;
         }
 
-        public bool IsArmstrongNumber(int num) 
+        public bool IsArmstrongNumber(int num)
         {
             double sum = 0;
             var asString = num.ToString().ToCharArray();
@@ -72,12 +102,12 @@
             return false;
         }
 
-        public double GetRemainder(int num1, int num2) 
+        public double GetRemainder(int num1, int num2)
         {
             return num1 % num2;
         }
 
-        public bool IsNumberDivisibleByTwo(int num) 
+        public bool IsNumberDivisibleByTwo(int num)
         {
             return num % 2 == 0;
         }
