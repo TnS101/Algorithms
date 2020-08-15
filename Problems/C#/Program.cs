@@ -12,6 +12,8 @@
         {
             var numeric = new NumericOperations();
 
+            Console.WriteLine(numeric.IsPrime(2));
+
         }
     }
 

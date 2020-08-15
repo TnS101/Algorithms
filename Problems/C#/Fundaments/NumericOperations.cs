@@ -14,6 +14,43 @@
             Console.WriteLine(num2);
         }
 
+        public int FindGCD(int num1, int num2) 
+        {
+            if (num1 != 0 && num2 != 0)
+            {
+                if (num1 > num2)
+                {
+                    num1 %= num2;
+                }
+                else
+                {
+                    num2 %= num1;
+                }
+            }
+
+            return num1 | num2;
+        }
+
+        public bool IsPrime(int num) 
+        {
+            if (num <= 1)
+            {
+                return false;
+            }
+
+            var factorCount = 0;
+
+            for (int i = 1; i <= num; i++)
+            {
+                if (num % i == 0)
+                {
+                    factorCount++;
+                }
+            }
+
+            return factorCount > 2 ? false : true;
+        }
+
         public bool IsArmstrongNumber(int num) 
         {
             double sum = 0;
