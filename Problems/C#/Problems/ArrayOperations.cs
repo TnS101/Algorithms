@@ -125,6 +125,39 @@
             return -1;
         }
 
+        public void MergeTwoSortedArrays(int[]arr1, int[]arr2) 
+        {
+            var result = new int[arr1.Length + arr2.Length];
+
+            int i = 0;
+            int j = 0;
+
+            for (int k = 0; k < result.Length; k++)
+            {
+                if (i == arr1.Length)
+                {
+                    result[k] = arr2[j];
+                    j++;
+                }
+                else if (j == arr2.Length)
+                {
+                    result[k] = arr1[i];
+                    i++;
+                }
+                else if (arr1[i] <= arr2[j])
+                {
+                    result[k] = arr1[i];
+                    i++;
+                }
+                else
+                {
+                    result[k] = arr2[j];
+                    j++;
+                }
+            }
+
+            this.PrinArray(result);
+        }
 
         public void MergeSort(int[] arr, int left, int right)
         {
