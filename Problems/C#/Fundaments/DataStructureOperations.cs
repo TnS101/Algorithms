@@ -17,6 +17,23 @@
                 start = start.Previous;
             }
 
+            list = result;
+
+            foreach (var item in list)
+            {
+                Console.WriteLine(item);
+            }
+        }
+
+        public void ReverseStack(Stack<int> stack) 
+        {
+            var result = new Stack<int>();
+
+            while (stack.Count > 0)
+            {
+                result.Push(stack.Pop());
+            }
+
             foreach (var item in result)
             {
                 Console.WriteLine(item);

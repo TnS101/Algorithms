@@ -13,15 +13,15 @@
         {
             var ds = new DataStructureOperations();
 
-            var list = new LinkedList<int>();
+            var stack = new Stack<int>();
 
-            list.AddLast(1);
-            list.AddLast(2);
-            list.AddLast(3);
-            list.AddLast(4);
-            list.AddLast(5);
+            stack.Push(1);
+            stack.Push(2);
+            stack.Push(3);
+            stack.Push(4);
+            stack.Push(5);
 
-            ds.ReverseALinkedList(list);
+            ds.ReverseStack(stack);
         }
     }
 
