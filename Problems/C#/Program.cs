@@ -14,9 +14,7 @@
         {
             var ds = new DataStructureOperations();
 
-            //Console.WriteLine(new BinarySearch(new int[] { 1, 2, 3, 4, 5, 6, 8, 9, 20, 65, 80, 90, 105, 250, 260 }).Execute(260));
-
-            Console.WriteLine(new NumericOperations().AngleBetweenClockArrows(4,20));
+            new NumericOperations().GetSubsequenceWithLargestValue(new int[] { 1, 2, -5, 6, -1, 4, -2, 3, -40, -2, 3, 10, 12, 18, 30, -10, 55 });
         }
     }
 

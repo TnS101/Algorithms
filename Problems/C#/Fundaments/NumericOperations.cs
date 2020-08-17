@@ -1,6 +1,7 @@
 ﻿namespace Interview_Prep.Fundaments
 {
     using System;
+    using System.Collections.Generic;
 
     public class NumericOperations
     {
@@ -24,6 +25,44 @@
             {
                 return 0;
             }
+        }
+
+        public void GetSubsequenceWithLargestValue(int[] arr) 
+        {
+            var sum = 0;
+            var oldSum = 0;
+            var result = new int[2];
+            var diff = -1;
+
+            for (int i = 0; i < arr.Length; i++)
+            {
+                if (sum + arr[i] < 0)
+                {
+                    if (sum > oldSum)
+                    {
+                        result[0] = i;
+                        oldSum = sum;
+                    }
+                    else
+                    {
+                        result[0] = i - diff;
+                        result[1] = i - 1;
+                    }
+
+                    sum = 0;
+                }
+                else
+                {
+                    diff++;
+                    sum += arr[i];
+                }
+            }
+
+            for (int i = result[0]; i < result[1]; i++)
+            {
+                Console.WriteLine(arr[i]);
+            }
+
         }
 
         public double AngleBetweenClockArrows(int hour, int minutes) 
