@@ -146,6 +146,34 @@
             }
         }
 
+        public void BuildLowestPossibleNumberFromString(string input, int n) 
+        {
+            if (input.Length - n == 1)
+            {
+                Console.WriteLine(input.ToCharArray().OrderBy(a => a).FirstOrDefault());
+                return;
+            }
+
+            var lowest = input[0];
+            var index = 0;
+
+            for (int i = 1; i <= input.Length - n; i++)
+            {
+                if (input[i] > '0' && lowest > input[i] || lowest == input[i])
+                {
+                    lowest = input[i];
+                    index = i;
+                }
+            }
+
+            Console.WriteLine(index);
+            Console.WriteLine(input.Length - n);
+
+            input = input.Substring(index, input.Length - n);
+
+            Console.WriteLine(input);
+        }
+
         public void RemoveCharExceptFirstOccurence(string input, char key)
         {
             var index = input.IndexOf(key);
