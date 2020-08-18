@@ -2,6 +2,7 @@
 {
     using System.Collections.Generic;
     using System;
+    using System.Linq;
 
     public class DataStructureOperations
     {
@@ -18,6 +19,33 @@
             }
 
             list = result;
+
+            foreach (var item in list)
+            {
+                Console.WriteLine(item);
+            }
+        }
+
+        public void RemoveAndRetainNodesFromLinkedList(LinkedList<int> list, int m, int n) 
+        {
+            var counter = m;
+
+            for (int i = 0; i < list.Count; i++)
+            {
+                if (counter == 0)
+                {
+                    for (int j = 0; j < n; j++)
+                    {
+                        if (i + j <= list.Count)
+                        {
+                            list.Remove(list.ElementAt(i));
+                        }
+                    }
+                    counter = m;
+                }
+
+                counter--;
+            }
 
             foreach (var item in list)
             {
