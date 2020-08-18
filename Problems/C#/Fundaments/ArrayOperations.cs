@@ -194,6 +194,45 @@
             return -1;
         }
 
+        public bool FindPairOfX(int[] arr, int x)
+        {
+            var right = arr[^1];
+            var left = arr[0];
+
+            for (int i = 0; i < arr.Length; i++)
+            {
+                if (left + right < x)
+                {
+                    if (left < right)
+                    {
+                        left = arr[i + 1];
+                    }
+                    else
+                    {
+                        right = arr[arr.Length - i - 1];
+                    }
+                }
+                else if (left + right > x)
+                {
+                    if (left < right)
+                    {
+                        right = arr[arr.Length - i - 1];
+                    }
+                    else
+                    {
+                        left = arr[i + 1];
+                    }
+                }
+                else
+                {
+                    Console.WriteLine($"{left} + {right} = {x}");
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
         public void MoveZeroesAtTheEnd(int[] arr)
         {
             Array.Sort(arr);

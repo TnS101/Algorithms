@@ -14,9 +14,9 @@
         {
             var ds = new DataStructureOperations();
 
-            //new NumericOperations().GetSubsequenceWithLargestValue(new int[] { 1, 2, -5, 6, -1, 4, -2, 3, -40, -2, 3, 10, 12, 18, 30, -10, 55 });
+            //Console.WriteLine(new ArrayOperations().CheckForDuplicateNumber(new int[] { 5, 8, 9, 0, 3, 4, 11, 2, 1, 3 }));
 
-            Console.WriteLine(new ArrayOperations().CheckForDuplicateNumber(new int[] { 5, 8, 9, 0, 3, 4, 11, 2, 1, 3 }));
+            Console.WriteLine(new ArrayOperations().FindPairOfX(new int[] { 8, 2, 5, 4, 41, 6, 17, 8, 59, 10, 15, 63, 1, 3 }, 23));
         }
     }
 
