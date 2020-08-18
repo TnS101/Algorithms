@@ -26,7 +26,42 @@
             }
         }
 
-        public void RemoveAndRetainNodesFromLinkedList(LinkedList<int> list, int m, int n) 
+        public void ReverseEveryKNode(LinkedList<int> list, int k)
+        {
+            var start = 0;
+            var end = k;
+
+            for (int i = 0; i < list.Count; i++)
+            {
+                if (i % k == 0)
+                {
+                    if (i + k >= list.Count)
+                    {
+                        break;
+                    }
+
+                    for (int j = start; j < end; j++)
+                    {
+                        var left = list.Find(list.ElementAt(j));
+                        var right = list.Find(list.ElementAt(end - j - 1));
+                        var temp = left.Value;
+                        Console.WriteLine($"Swap {left.Value} and {right.Value}!");
+
+                        left.Value = right.Value;
+                        right.Value = temp;
+                    }
+                    start += k;
+                    end += k;
+                }
+            }
+
+            foreach (var item in list)
+            {
+                Console.WriteLine(item);
+            }
+        }
+
+        public void RemoveAndRetainNodesFromLinkedList(LinkedList<int> list, int m, int n)
         {
             var counter = m;
 
@@ -53,7 +88,7 @@
             }
         }
 
-        public void ReverseStack(Stack<int> stack) 
+        public void ReverseStack(Stack<int> stack)
         {
             var result = new Stack<int>();
 

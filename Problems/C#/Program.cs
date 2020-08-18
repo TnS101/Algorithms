@@ -27,7 +27,7 @@
             list.AddLast(7);
             list.AddLast(8);
 
-            ds.RemoveAndRetainNodesFromLinkedList(list, 2, 2);
+            ds.ReverseEveryKNode(list, 3);
         }
     }
 
