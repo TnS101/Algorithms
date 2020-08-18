@@ -134,7 +134,7 @@
             return String.Join(key, input.Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries));
         }
 
-        public void FindAllSubstringsInAString(string value) 
+        public void FindAllSubstringsInAString(string value)
         {
             for (int i = 1; i < value.Length; i++)
             {
@@ -144,6 +144,15 @@
                     Console.WriteLine(substring);
                 }
             }
+        }
+
+        public void RemoveCharExceptFirstOccurence(string input, char key)
+        {
+            var index = input.IndexOf(key);
+            var left = input.Substring(0, Math.Abs(index - input.Length));
+            var right = String.Join("", input.Substring(0, input.Length).Split(new char[] { key }, StringSplitOptions.RemoveEmptyEntries));
+
+            Console.WriteLine($"{left} {right}");
         }
     }
 }

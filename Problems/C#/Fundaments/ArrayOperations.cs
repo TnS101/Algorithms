@@ -87,38 +87,47 @@
 
         public bool CheckForDuplicateNumber(int[] arr)
         {
-            Array.Sort(arr);
-            for (int i = 1; i < arr.Length / 2; i++)
+            var index = Array.IndexOf(arr, arr.FirstOrDefault(a => a != -1));
+
+            for (int i = 0; i < arr.Length; i++)
             {
-                if (arr[i - 1] == arr[i])
+                if (arr[i] != -1)
                 {
-                    return true;
+                    arr[i] = -1;
+                    i--;
+                    index = Array.IndexOf(arr, arr.FirstOrDefault(a => a != -1));
+                }
+                else
+                {
+                    if (index == i)
+                    {
+                        Console.WriteLine($"{index} => {i}");
+                        index = Array.IndexOf(arr, arr.FirstOrDefault(a => a != -1));
+                    }
+                    else
+                    {
+                        if (arr[i] == arr.FirstOrDefault(a => a != -1))
+                        {
+                            Console.WriteLine($"{index} => {i}");
+                            return true;
+                        }
+                    }
                 }
             }
 
             return false;
         }
 
-        public int OneRepeatingNumber(int[] arr) 
+        public int OneRepeatingNumber(int[] arr)
         {
-            var sum = 0;
-
-            for (int i = 0; i < arr.Length; i++)
-            {
-                sum += arr[i];
-            }
+            var sum = arr.Sum(a => a);
 
             return sum - arr.Length * (arr.Length - 1) / 2;
         }
 
-        public int OneMissingNumber(int[] arr) 
+        public int OneMissingNumber(int[] arr)
         {
-            var sum = 0;
-
-            for (int i = 0; i < arr.Length; i++)
-            {
-                sum += arr[i];
-            }
+            var sum = arr.Sum(a => a);
 
             return (arr.Length + 1) * (arr.Length + 2) / 2 - sum;
         }
@@ -133,7 +142,7 @@
             return -1;
         }
 
-        public void MergeTwoSortedArrays(int[]arr1, int[]arr2) 
+        public void MergeTwoSortedArrays(int[] arr1, int[] arr2)
         {
             var result = new int[arr1.Length + arr2.Length];
 
