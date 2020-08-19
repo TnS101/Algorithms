@@ -27,6 +27,21 @@
             }
         }
 
+        public int GetFibo(int num) 
+        {
+            if (num == 0)
+            {
+                return 0;
+            }
+
+            if (num == 1)
+            {
+                return 1;
+            }
+
+            return GetFibo(num - 1) + GetFibo(num - 2);
+        }
+
         public void GetSubsequenceWithLargestValue(int[] arr) 
         {
             var sum = 0;
