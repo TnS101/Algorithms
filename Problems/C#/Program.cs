@@ -16,18 +16,9 @@
 
             //Console.WriteLine(new ArrayOperations().CheckForDuplicateNumber(new int[] { 5, 8, 9, 0, 3, 4, 11, 2, 1, 3 }));
 
-            var list = new LinkedList<int>();
+            new ArrayOperations().PyramidWithRecursion(new int[] { 1,2,3,4,5,6,7,8,9 });
 
-            list.AddLast(1);
-            list.AddLast(2);
-            list.AddLast(3);
-            list.AddLast(4);
-            list.AddLast(5);
-            list.AddLast(6);
-            list.AddLast(7);
-            list.AddLast(8);
-
-            ds.ReverseEveryKNode(list, 3);
+            new ArrayOperations().Pyramid();
         }
     }
 

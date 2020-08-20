@@ -26,6 +26,53 @@
             this.PrinArray(rotatedArray);
         }
 
+        public void Pyramid()
+        {
+            for (int i = 0; i < 9; i++)
+            {
+                for (int j = 0; j < 9 - i; j++)
+                {
+                    Console.Write(" ");
+                }
+
+                for (int j = i; j <= 3 * i; j++)
+                {
+                    Console.Write("*");
+                }
+
+                Console.WriteLine();
+            }
+        }
+
+        public void PyramidWithRecursion(int[] arr)
+        {
+            for (int i = 0; i < arr.Length; i++)
+            {
+                for (int j = 0; j < arr.Length - i; j++)
+                {
+                    Console.Write(" ");
+                }
+
+                if (i > 1)
+                {
+                    i +=2;
+                }
+
+                for (int j = i; j <= 3 * i; j++)
+                {
+                    if (j >= arr.Length)
+                    {
+                        Console.WriteLine();
+                        return;
+                    }
+
+                    Console.Write(arr[j]);
+                }
+
+                Console.WriteLine();
+            }
+        }
+
         public bool CheckSumFromTwoArrays(int[] arr1, int[] arr2, int target)
         {
             Array.Sort(arr1);
