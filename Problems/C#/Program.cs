@@ -17,8 +17,6 @@
             //Console.WriteLine(new ArrayOperations().CheckForDuplicateNumber(new int[] { 5, 8, 9, 0, 3, 4, 11, 2, 1, 3 }));
 
             new ArrayOperations().PyramidWithRecursion(new int[] { 1,2,3,4,5,6,7,8,9 });
-
-            new ArrayOperations().Pyramid();
         }
     }
 
