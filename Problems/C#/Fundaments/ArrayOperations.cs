@@ -26,6 +26,45 @@
             this.PrinArray(rotatedArray);
         }
 
+        public void Triangle(int num) 
+        {
+            for (int i = 0; i < num; i++)
+            {
+                for (int j = 0; j <= i; j++)
+                {
+                    Console.Write("*");
+                }
+                Console.WriteLine();
+            }
+        }
+
+        public void Square(int a, int b) 
+        {
+            var rightWall = "*";
+
+            for (int i = 2; i < a; i++)
+            {
+                rightWall += " ";
+            }
+
+            for (int i = 0; i < a; i++)
+            {
+                if (i == 0 || i == a - 1)
+                {
+                    Console.Write("*");
+                    for (int j = 0; j < b - 2; j++)
+                    {
+                        Console.Write("*");
+                    }
+                }
+                Console.WriteLine("*");
+                if (i < a - 2)
+                {
+                    Console.Write(rightWall);
+                }
+            }
+        }
+
         public void Pyramid(int[] arr)
         {
             for (int i = 0; i < arr.Length; i++)
