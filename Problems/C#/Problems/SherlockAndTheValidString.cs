@@ -26,15 +26,11 @@ namespace Interview_Prep.Problems
 
             int[] values = dict.OrderByDescending(c => c.Value).Select(c => c.Value).ToArray();
 
-            Console.WriteLine(String.Join("", values));
-
             var temp = values[0];
             var counter = 0;
 
             for (int i = 1; i < values.Length; i++)
             {
-                Console.WriteLine($"{temp} {values[i]}");
-
                 if (values[0] != values[i])
                 {
                     temp = values[i];
@@ -44,10 +40,19 @@ namespace Interview_Prep.Problems
                     counter++;
                 }
 
-                if (i + 1 < values.Length && temp == values[i + 1] && counter > 0)
+                if (i + 1 < values.Length)
                 {
-                    return "NO";
+                    if (temp == values[i + 1] && counter > 0)
+                    {
+                        return "NO";
+                    }
+
+                    if (temp != values[i + 1] && temp - counter >= values[i + 1])
+                    {
+                        return "NO";
+                    }
                 }
+
             }
 
             return "YES";
