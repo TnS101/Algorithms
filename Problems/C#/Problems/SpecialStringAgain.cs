@@ -1,9 +1,5 @@
 ﻿namespace Interview_Prep.Problems
 {
-    using System;
-    using System.Text;
-    using System.Linq;
-
     public class SpecialStringAgain
     {
         public long Exe(string s)
@@ -20,7 +16,7 @@
                     var currChar = s[j];
                     if (startChar == currChar)
                     {
-                        if ((diffCharIdx == -1) || (j - diffCharIdx) == (diffCharIdx - i))
+                        if ((diffCharIdx == -1) || (j - diffCharIdx) == (diffCharIdx - i)) //Check for duplicates
                         {
                             result++;
                         }
@@ -29,12 +25,11 @@
                     {
                         if (diffCharIdx == -1) 
                         {
-                            diffCharIdx = j;
+                            diffCharIdx = j; //Set to the next index
                         }
-
                         else 
                         {
-                            break;
+                            break; //End of string
                         }
                     }
                 }
