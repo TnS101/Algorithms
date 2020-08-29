@@ -6,48 +6,37 @@
 
     public class SpecialStringAgain
     {
-        public int Exe(string s)
+        public long Exe(string s)
         {
-            var result = s.Length;
+            long result = s.Length;
 
-            if (s.ToCharArray().Distinct().Count() == 1)
+            for (int i = 0; i < s.Length; i++)
             {
-                result += s.Length / 2 + s.Length;
-                return result;
-            }
+                var startChar = s[i];
+                int diffCharIdx = -1;
 
-            var head = s[0];
-            var sub = new StringBuilder();
-            sub.Append(head);
-
-            for (int i = 1; i < s.Length; i++)
-            {
-                if (head == s[i])
+                for (int j = i + 1; j < s.Length; j++)
                 {
-                    if (sub.ToString() == head.ToString())
+                    var currChar = s[j];
+                    if (startChar == currChar)
                     {
-                        result++;
+                        if ((diffCharIdx == -1) || (j - diffCharIdx) == (diffCharIdx - i))
+                        {
+                            result++;
+                        }
                     }
                     else
                     {
-                        sub.Append(s[i]);
-
-                        var toString = sub.ToString();
-
-                        if (toString.SequenceEqual(toString.Reverse()))
+                        if (diffCharIdx == -1) 
                         {
-                            result++;
-                            i--;
-                            sub.Clear();
-                            sub.Append(s[i]);
+                            diffCharIdx = j;
+                        }
+
+                        else 
+                        {
+                            break;
                         }
                     }
-
-                    head = s[i];
-                }
-                else
-                {
-                    sub.Append(s[i]);
                 }
             }
 
