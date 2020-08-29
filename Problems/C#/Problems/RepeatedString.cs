@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace Interview_Prep.Problems
@@ -13,18 +14,15 @@ namespace Interview_Prep.Problems
                 return n;
             }
 
-            var occurence = 0;
-
-            var result = 0;
-            var arr = s.ToCharArray();
-
-            for (int i = 0; i < arr.Length; i++)
+            if (n == 0)
             {
-                if (arr[i] == 'a')
-                {
-                    occurence++;
-                }
+                return 0;
             }
+
+            var arr = s.ToCharArray();
+            var occurence = arr.Where(c => c == 'a').Count();
+
+            long result = 0;
 
             if (n % s.Length == 0)
             {
@@ -38,7 +36,6 @@ namespace Interview_Prep.Problems
                 result += (int)whole * occurence;
 
                 var length = (int)remainder;
-
 
                 for (int i = 0; i < length; i++)
                 {
