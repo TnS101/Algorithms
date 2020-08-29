@@ -1,68 +1,30 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Interview_Prep.Problems
+﻿namespace Interview_Prep.Problems
 {
+    using System;
+
     public class MarkAndToys
     {
-        public void Exe(int money, int[] arr) 
+        public int Exe(int[] arr, int money) 
         {
-            var temp = 0;
-
             var result = 0;
 
-            for (int i = 0; i < arr.Length / 2; i++)
-            {
-                Console.WriteLine($"{temp} -> {arr[i]}");
-                if (temp == 0)
-                {
-                    if (arr[i] < arr[arr.Length - i - 1])
-                    {
-                        temp = arr[arr.Length - i - 1];
-                        if (money - arr[i] >= 0)
-                        {
-                            money -= arr[i];
-                            result++;
-                        }
-                        else
-                        {
-                            break;
-                        }
-                    }
-                }
-                else
-                {
-                    if (arr[i] < temp)
-                    {
-                        if (money - arr[i] >= 0)
-                        {
-                            money -= arr[i];
-                            result++;
-                        }
-                        else
-                        {
-                            break;
-                        }
-                    }
-                    else
-                    {
-                        if (money - temp >= 0)
-                        {
-                            money -= temp;
-                            result++;
-                        }
-                        else
-                        {
-                            break;
-                        }
+            Array.Sort(arr);
 
-                        temp = arr[i];
-                    }
+            for (int i = 0; i < arr.Length; i++)
+            {
+                Console.WriteLine($"{arr[i]}");
+            }
+
+            for (int i = 0; i < arr.Length; i++)
+            {
+                if (money - arr[i] > 0)
+                {
+                    money -= arr[i];
+                    result++;
                 }
             }
 
-            Console.WriteLine(result);
+            return result;
         }
     }
 }
