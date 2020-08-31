@@ -58,6 +58,7 @@
                     }
                 }
                 Console.WriteLine("*");
+
                 if (i < a - 2)
                 {
                     Console.Write(rightWall);

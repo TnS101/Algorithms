@@ -1,13 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Linq;
 
 namespace Interview_Prep.Problems
 {
     public class RepeatedString
     {
-        public long Exe(string s, long n) 
+        public long Exe(string s, long n)
         {
             if (s.Length == 1)
             {
