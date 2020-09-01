@@ -1,17 +1,27 @@
-﻿namespace Interview_Prep
-{
-    using Interview_Prep.Fundaments;
-    using Interview_Prep.Problems;
-    using System;
-    using System.Collections.Generic;
+﻿using System;
 
+namespace Interview_Prep
+{
     public class Program
     {
         static void Main(string[] args)
         {
-            var arr = new int[] { 8,1,3,4,6,7,8,10,2 };
+            var grades = new int[] { 73, 67, 38, 33 };
 
 
+            for (int i = 0; i < grades.Length; i++)
+            {
+                if (grades[i] >= 38)
+                {
+                    var rounded = grades[i] % 5 + grades[i];
+                    if (rounded - grades[i] < 3)
+                    {
+                        grades[i] = rounded - 3;
+                    }
+                }
+            }
+
+            Console.WriteLine(String.Join(", ", grades));
         }
     }
 
