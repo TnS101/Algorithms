@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Interview_Prep
 {
@@ -6,22 +8,45 @@ namespace Interview_Prep
     {
         static void Main(string[] args)
         {
-            var grades = new int[] { 73, 67, 38, 33 };
+            var arr = new List<int>() { 4, 6, 5, 3, 3, 1 };
+            arr = arr.OrderBy(i => i).ToList();
 
+            var result = 0;
+            var temp = -1;
 
-            for (int i = 0; i < grades.Length; i++)
+            for (int i = 1; i < arr.Count; i++)
             {
-                if (grades[i] >= 38)
+                var diff = Math.Abs(arr[i - 1] - arr[i]);
+                if (temp == -1)
                 {
-                    var rounded = grades[i] % 5 + grades[i];
-                    if (rounded - grades[i] < 3)
+                    if (diff <= 1)
                     {
-                        grades[i] = rounded - 3;
+                        result++;
+                    }
+                    else if (diff > 1 && result > 0)
+                    {
+                        temp = 0;
+                    }
+                }
+                else
+                {
+                    if (diff <= 1)
+                    {
+                        temp++;
+                    }
+                    else
+                    {
+                        if (temp > result)
+                        {
+                            result = temp;
+                        }
+
+                        temp = -1;
                     }
                 }
             }
 
-            Console.WriteLine(String.Join(", ", grades));
+            Console.WriteLine(result);
         }
     }
 
