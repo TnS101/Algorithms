@@ -46,6 +46,9 @@ class Pokemon:
             print(message.format(self.name))
         self.energy += 1
 
+        if self.energy > 10:
+            self.energy = 10
+
     def info(self):
         message = '\n-----------\n Name : {}\n Element : {}\n Hunger : {}\n Thirst : {}\n Energy : {}\n Attack : {}\n Health : {}\n-----------\n'
         print(message.format(self.name, self.element, self.hunger, self.thirst, self.energy, self.attack, self.health))   
@@ -65,8 +68,14 @@ class Pokemon:
             print(message.format(self.name))
         self.energy += 1
 
+        if self.energy > 10:
+            self.energy = 10
+
 
     def basicAttack(self, pokemon):
+        if self.energy == 0:
+            print('No enough Energy!')
+            return
         if self.hunger > 5:
             print('Pokemon is Hungry!')
             return
@@ -82,6 +91,10 @@ class Pokemon:
         print(message.format(pokemon.name, self.name, self.attack))
 
     def useAbility(self, pokemon, abilityName):
+        if self.energy == 0:
+            print('No enough Energy!')
+            return
+
         ability = {}
         for ab in self.abilities:
             if ab.name == abilityName:
