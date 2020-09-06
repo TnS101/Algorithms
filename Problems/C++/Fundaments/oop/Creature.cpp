@@ -14,6 +14,18 @@ Creature::Creature(string name, int age, int weight)
     this->happiness = 10;
 };
 
+string Creature::getName(){return this->name;}
+
+int Creature::getWeight(){return this->weight;}
+
+int Creature::getHealth(){return this->health;}
+
+int Creature::getEnergy(){return this->energy;}
+
+int Creature::getHappiness(){return this->happiness;}
+
+int Creature::getAge(){return this->age;}
+
 void Creature::Eat(int amount)
 {
     cout << this->name << " ate " << amount << " food" << endl;
@@ -32,4 +44,6 @@ void Creature::Sleep(int hours)
     {
         this->energy = 10 - abs(hours - 8);
     }
+
+    cout << this->name << " slept for " << hours << " hours " << endl;
 }
