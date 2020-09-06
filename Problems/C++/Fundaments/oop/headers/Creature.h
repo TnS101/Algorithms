@@ -5,8 +5,10 @@ using namespace std;
 
 class Creature
 {
+
 protected:
     string name;
+    string creatureType;
     int age;
     int weight;
     int health;
@@ -64,5 +66,15 @@ public:
 
     bool Train(int hours);
 
-    void Die();
+    void Starve();
+
+    void Dehydrate();
+
+    void Depress();
+
+    void Exhaust();
+
+    void Obese();
+
+    void Die(string cause);
 };

@@ -9,6 +9,12 @@ class Person : public Creature
 private:
     string gender;
     int money;
+    int intellect;
+    int wisdomProgress;
+    int wisdom;
+
+protected:
+    void wornOut();
 
 public:
     Person(string name, int age, string gender, int weight);
@@ -18,5 +24,9 @@ public:
 
     int getMoney();
 
-    void Die();
+    int getIntellect();
+
+    bool Study(int hours);
+
+    bool Work(int hours, int salary);
 };

@@ -8,39 +8,52 @@ using namespace std;
 Person::Person(string name, int age, string gender, int weight) : Creature(name, age, weight)
 {
     this->gender = gender;
+    this->creatureType = "Human";
     this->health = 100;
     this->energy = 10;
     this->money = 0;
+    this->intellect = 0;
+    this->wisdomProgress = 0;
+    this->wisdom = 1;
 }
 
 Person::~Person()
 {
-    
+
 };
 
 string Person::getGender() { return this->gender; }
 
 int Person::getMoney() { return this->money; }
 
-void Person::Die()
+int Person::getIntellect() { return this->intellect; }
+
+bool Person::Study(int hours)
 {
-    cout << this->name << " has died..." << endl;
-    this->isAlive = false;
+    this->thirst -= hours/2;
+    this->hunger -= hours/2;
+    this->happiness -= hours;
+    this->energy -= hours;
 
-    double ageScore = this->age * 36;
-    double moneyScore = this->money / 200;
-    double happinessScore = this->happiness * 20;
-    double weightScore = (60 - this->weight) + 100;
-    double healthScore = this->age / 60 * this->health;
-    double staminaScore = this->stamina * 50;
-    double stressFreeScore = this->stressFree * 20;
-    double stressScore = -this->stress * 15;
+    this->intellect += hours * this->wisdom;
 
-    double totalScore = ageScore + moneyScore + happinessScore + weightScore + healthScore + staminaScore + stressFreeScore + stressScore;
+    this->wisdomProgress++;
 
-    cout << "Age : 36 x age = " << ageScore << "\nMoney : 200 / money = " << moneyScore << "\nHappiness : 20 x happines = " << happinessScore
-         << "\nWeight : (60 - weight) + 100 = " << weightScore << "\nHealth : age / 60 x health = " << healthScore << "\nStamina : 50 x stamina = "
-         << staminaScore << "\nStress Free : 20 x stress free = " << stressFreeScore << "\nStress : -15 * stress = " << stressScore << endl;
+    if (this->wisdomProgress == 50)
+    {
+        this->wisdomProgress = 0;
+        this->wisdom++;
+    }
+    
+    if (this->thirst < 0 )
+    {
 
-    cout << "Total Score : " << totalScore << endl;
+    }
+    
+
+}
+
+void wornOut(Person person)
+{
+    
 }
