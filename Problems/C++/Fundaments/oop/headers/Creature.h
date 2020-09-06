@@ -1,31 +1,39 @@
 #pragma once
+
 using namespace std;
 #include <string>
 
 class Creature
 {
-    public:
-        string name;
-        int age;
-        int weight;
-        int health;
-        int energy;
-        int happiness;
+protected:
+    string name;
+    int age;
+    int weight;
+    int health;
+    int energy;
+    int happiness;
+    bool isAlive;
 
-        Creature(string name, int age, int weight);
+public:
+    Creature(string name, int age, int weight);
 
-        string getName();
+    string getName();
 
-        int getAge();
+    int getAge();
 
-        int getWeight();
+    int getWeight();
 
-        int getHealth();
+    int getHealth();
 
-        int getEnergy();
+    int getEnergy();
 
-        int getHappiness();
+    int getHappiness();
 
-        void Eat(int amount);
-        void Sleep(int hours);
+    bool getIsAlive();
+
+    void Eat(int amount);
+
+    void Sleep(int hours);
+
+    void Die();
 };

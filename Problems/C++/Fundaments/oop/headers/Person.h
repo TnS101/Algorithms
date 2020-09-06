@@ -1,18 +1,19 @@
 #pragma once
+
 using namespace std;
 #include <string>
 #include "Creature.h"
 
 class Person : public Creature
 {
-    private:
-        string gender;
-        int money;
-        
-    public:
-        Person(string name, int age, string gender, int weight);
+private:
+    string gender;
+    int money;
 
-        string getGender();
+public:
+    Person(string name, int age, string gender, int weight);
 
-        int getMoney();
+    string getGender();
+
+    int getMoney();
 };
