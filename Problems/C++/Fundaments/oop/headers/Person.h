@@ -1,18 +1,14 @@
 #pragma once
 using namespace std;
 #include <string>
+#include "Creature.h"
 
-class Person
+class Person : public Creature
 {
     private:
-        string name;
-        int age;
         string gender;
-        int weight;
-        int health;
-        int energy;
         int money;
-        int happiness;
+        
     public:
         Person(string name, int age, string gender, int weight);
         
@@ -31,8 +27,4 @@ class Person
         int getMoney();
 
         int getHappiness();
-
-        void Eat(int amount);
-
-        void Sleep(int hours);
 };

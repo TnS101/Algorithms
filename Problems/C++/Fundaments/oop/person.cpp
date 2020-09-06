@@ -3,8 +3,9 @@ using namespace std;
 #include <string>
 #include  <cstdlib>
 #include "./headers/Person.h"
+#include "Creature.cpp"
 
-Person::Person(string name, int age, string gender, int weight)
+Person::Person(string name, int age, string gender, int weight):Creature(name, age, weight)
 {
     this->name = name;
     this->age = age;
@@ -12,7 +13,6 @@ Person::Person(string name, int age, string gender, int weight)
     this->weight = weight;
     this->health = 100;
     this->energy = 10;
-    this->happiness = 10;
     this->money = 1000;
 }
 
@@ -29,24 +29,3 @@ int Person::getHealth(){return this->health;}
 int Person::getEnergy(){return this->energy;}
 
 int Person::getHappiness(){return this->happiness;}
-
-void Person::Eat(int amount)
-{
-    cout << this->name << " has ate " << amount << " food" << endl;
-    this->weight += amount;
-    this->energy++; 
-}
-
-void Person::Sleep(int hours)
-{
-    if (hours == 8)
-    {
-        this->energy = 10;
-        this->happiness++;
-    }
-    else
-    {
-        this->energy = 10 - abs(hours - 8);
-    }
-}
-
