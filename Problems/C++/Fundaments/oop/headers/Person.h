@@ -10,8 +10,10 @@ private:
     string gender;
     int money;
     int intellect;
-    int wisdomProgress;
     int wisdom;
+    int wisdomProgress;
+    int professionalExperience;
+    int professionalExperienceProgress;
 
 protected:
     void wornOut();
@@ -28,5 +30,5 @@ public:
 
     bool Study(int hours);
 
-    bool Work(int hours, int salary);
+    bool Work(int hours, int salary, int stress);
 };

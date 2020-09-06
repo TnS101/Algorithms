@@ -13,12 +13,13 @@ Person::Person(string name, int age, string gender, int weight) : Creature(name,
     this->energy = 10;
     this->money = 0;
     this->intellect = 0;
-    this->wisdomProgress = 0;
     this->wisdom = 1;
+    this->wisdomProgress = 0;
+    this->professionalExperience = 0;
+    this->professionalExperienceProgress = 0;
 }
 
-Person::~Person()
-{
+Person::~Person(){
 
 };
 
@@ -30,30 +31,71 @@ int Person::getIntellect() { return this->intellect; }
 
 bool Person::Study(int hours)
 {
-    this->thirst -= hours/2;
-    this->hunger -= hours/2;
-    this->happiness -= hours;
-    this->energy -= hours;
-
-    this->intellect += hours * this->wisdom;
-
-    this->wisdomProgress++;
-
-    if (this->wisdomProgress == 50)
+    if (this->energy - hours >= 0)
     {
-        this->wisdomProgress = 0;
-        this->wisdom++;
+        this->thirst -= hours / 2;
+        this->hunger -= hours / 2;
+        this->happiness -= hours;
+        this->energy -= hours;
+
+        this->intellect += hours * this->wisdom;
+
+        this->wisdomProgress++;
+
+        if (this->wisdomProgress == 50)
+        {
+            this->wisdomProgress = 0;
+            this->wisdom++;
+
+            cout << this->name << " has Leveled Up their Wisdom Potential to level : " << this->wisdom << endl;
+        }
+
+        this->Dehydrate();
+        this->Starve();
+        this->Depress();
+        this->Exhaust();
+
+        return true;
     }
-    
-    if (this->thirst < 0 )
+    else
     {
-
+        cout << this->name << " will be too exhausted from that much studying!" << endl;
+        return false;
     }
-    
-
 }
 
-void wornOut(Person person)
+bool Person::Work(int hours, int salary, int stress)
 {
-    
+    if (this->energy - hours >= 0)
+    {
+        int experience = this->professionalExperience + 1;
+
+        this->thirst -= hours / experience;
+        this->hunger -= hours / experience;
+        this->energy -= hours / experience;
+        this->money += salary * hours;
+        this->happiness -= hours / experience;
+
+        this->professionalExperienceProgress += hours;
+
+        if (this->professionalExperienceProgress >= 100)
+        {
+            this->professionalExperienceProgress -= 100;
+            this->professionalExperience++;
+
+            cout << this->name << " has Leveled Up their Professional Experience Potential to level : " << this->wisdom << endl;
+        }
+
+        this->Dehydrate();
+        this->Starve();
+        this->Depress();
+        this->Exhaust();
+
+        return true;
+    }
+    else
+    {
+        cout << this->name << " will be too exhausted from that much work!" << endl;
+        return false;
+    }
 }
