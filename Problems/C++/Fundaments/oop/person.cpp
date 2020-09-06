@@ -2,7 +2,7 @@ using namespace std;
 #include <iostream>
 #include <string>
 #include  <cstdlib>
-#include "Person.h"
+#include "./headers/Person.h"
 
 Person::Person(string name, int age, string gender, int weight)
 {
