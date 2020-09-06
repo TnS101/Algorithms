@@ -24,6 +24,8 @@ protected:
 public:
     Creature(string name, int age, int weight);
 
+    ~Creature();
+
     string getName();
 
     int getAge();

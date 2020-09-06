@@ -13,6 +13,11 @@ Person::Person(string name, int age, string gender, int weight) : Creature(name,
     this->money = 0;
 }
 
+Person::~Person()
+{
+    
+};
+
 string Person::getGender() { return this->gender; }
 
 int Person::getMoney() { return this->money; }

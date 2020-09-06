@@ -12,6 +12,7 @@ private:
 
 public:
     Person(string name, int age, string gender, int weight);
+    ~Person();
 
     string getGender();
 

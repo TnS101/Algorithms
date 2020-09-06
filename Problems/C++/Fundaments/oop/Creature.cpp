@@ -22,6 +22,11 @@ Creature::Creature(string name, int age, int weight)
     this->stress = 0;
 };
 
+Creature::~Creature()
+{
+    
+};
+
 string Creature::getName() { return this->name; }
 
 int Creature::getWeight() { return this->weight; }
