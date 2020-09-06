@@ -16,4 +16,6 @@ public:
     string getGender();
 
     int getMoney();
+
+    void Die();
 };

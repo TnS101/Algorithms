@@ -10,8 +10,15 @@ protected:
     int age;
     int weight;
     int health;
-    int energy;
+    double energy;
+    int stamina;
+    int staminaProgress;
     int happiness;
+    int stressFree;
+    int stressFreeProgress;
+    int hunger;
+    int thirst;
+    int stress;
     bool isAlive;
 
 public:
@@ -25,15 +32,35 @@ public:
 
     int getHealth();
 
-    int getEnergy();
+    double getEnergy();
+
+    int getStamina();
+
+    int getStaminaProgress();
+
+    int getStressFree();
+
+    int getStressFreeProgress();
 
     int getHappiness();
 
+    int getHunger();
+
+    int getStress();
+
+    int getThirst();
+
     bool getIsAlive();
 
-    void Eat(int amount);
+    bool Eat(int amount);
 
-    void Sleep(int hours);
+    bool Drink(int amount);
+
+    bool Sleep(int hours);
+
+    bool Rest(int hours);
+
+    bool Train(int hours);
 
     void Die();
 };
