@@ -19,9 +19,7 @@ Person::Person(string name, int age, string gender, int weight) : Creature(name,
     this->professionalExperienceProgress = 0;
 }
 
-Person::~Person(){
-
-};
+Person::~Person(){};
 
 string Person::getGender() { return this->gender; }
 
@@ -98,4 +96,32 @@ bool Person::Work(int hours, int salary, int stress)
         cout << this->name << " will be too exhausted from that much work!" << endl;
         return false;
     }
+}
+
+void Person::PlayWithPet(string petName)
+{
+    if (this->pets == 0)
+    {
+        cout << this->name << " has no pets!" << endl;
+        return;
+    }
+
+    int len = sizeof(this->pets) / sizeof(this->pets[0]);
+
+    for (int i = 0; i < len; i++)
+    {
+        if (pets[i].getName() == petName)
+        {
+            this->happiness += pets[i].Play();
+
+            if (this->happiness > 10)
+            {
+                this->happiness = 10;
+            }
+
+            return;
+        }
+    }
+
+    cout << "Pet with name : " << petName << " was not found!" << endl;
 }

@@ -3,10 +3,10 @@
 using namespace std;
 #include <string>
 #include "Creature.h"
+#include "Animal.h"
 
 class Person : public Creature
 {
-private:
     string gender;
     int money;
     int intellect;
@@ -14,9 +14,7 @@ private:
     int wisdomProgress;
     int professionalExperience;
     int professionalExperienceProgress;
-
-protected:
-    void wornOut();
+    Animal pets[5];
 
 public:
     Person(string name, int age, string gender, int weight);
@@ -31,4 +29,6 @@ public:
     bool Study(int hours);
 
     bool Work(int hours, int salary, int stress);
+
+    void PlayWithPet(string petName);
 };
