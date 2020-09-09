@@ -14,7 +14,7 @@ class Person : public Creature
     int wisdomProgress;
     int professionalExperience;
     int professionalExperienceProgress;
-    Animal pets[5];
+    Animal *pets[5];
 
 public:
     Person(string name, int age, string gender, int weight);

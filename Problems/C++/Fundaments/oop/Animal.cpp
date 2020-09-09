@@ -4,7 +4,7 @@ using namespace std;
 #include "Creature.cpp"
 #include <memory>
 
-Animal::Animal(string name, string animalType, int age, int weight, int buyPrice, Person owner) : Creature(name, age, weight)
+Animal::Animal(string name, string animalType, int age, int weight, int buyPrice, Person *owner) : Creature(name, age, weight)
 {
     this->animalType = animalType;
     this->owner = owner;

@@ -8,10 +8,10 @@ using namespace std;
 class Animal : public Creature
 {
     string animalType;
-    Person owner;
+    Person *owner;
     int buyPrice;
 public:
-    Animal(string name, string animalType, int age, int weight, int buyPrice, Person owner);
+    Animal(string name, string animalType, int age, int weight, int buyPrice, Person *owner);
     ~Animal();
 
     int Play();

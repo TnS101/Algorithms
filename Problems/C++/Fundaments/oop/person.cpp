@@ -110,9 +110,9 @@ void Person::PlayWithPet(string petName)
 
     for (int i = 0; i < len; i++)
     {
-        if (pets[i].getName() == petName)
+        if (pets[i]->getName() == petName)
         {
-            this->happiness += pets[i].Play();
+            this->happiness += pets[i]->Play();
 
             if (this->happiness > 10)
             {
