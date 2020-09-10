@@ -1,3 +1,42 @@
+from random import randint
+
+class Player:
+    def __init__(self, name, gender):
+        self.name = name
+        self.gender = gender
+        self.badges = 0
+        self.pokemons = []
+        self.balls = []
+
+    def catchPokemon(self, pokemon, ballName):
+        targetBall = {}
+        for ball in self.balls:
+            if ball.name == ballName:
+                targetBall = ball
+                break
+        
+        if targetBall.use(pokemon):
+            self.balls.remove(targetBall)
+            self.pokemons.append(pokemon)
+
+class Ball:
+    def __init__(self, name, rarity, catchPercentage):
+        self.name = name
+        self.rarity = rarity
+        self.catchPercentage = catchPercentage
+        self.pokemon = {}
+
+    def use(self, pokemon):
+        if randint(0, 100) <= self.catchPercentage:
+            self.pokemon = pokemon
+            message = '{} was catched!'
+            print(message.format(pokemon.name))
+            return True
+        else:
+            message = '{} was not catched!'
+            print(message.format(pokemon.name))
+            return False    
+
 class Ability:
     def __init__(self, name, aType, element, power, operator, energy):
         self.name = name
