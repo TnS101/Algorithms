@@ -9,15 +9,13 @@ class Player:
         self.balls = []
 
     def catchPokemon(self, pokemon, ballName):
-        targetBall = {}
         for ball in self.balls:
             if ball.name == ballName:
-                targetBall = ball
-                break
+                if ball.use(pokemon):
+                    self.balls.remove(ball)
+                    self.pokemons.append(pokemon)
+                    break
         
-        if targetBall.use(pokemon):
-            self.balls.remove(targetBall)
-            self.pokemons.append(pokemon)
 
 class Ball:
     def __init__(self, name, rarity, catchPercentage):
@@ -144,14 +142,16 @@ class Pokemon:
                 raise Exception(message.format(abilityName))
         self.energy -= 1        
         ability.use(pokemon)
-     
+
+player = Player('Ash', 'Male')
+superBall = Ball('SuperBall', 1, 100)
+
+player.balls.append(superBall)
 
 thunderBolt = Ability('Thunder Bolt', 'Health', 'Thunder', 5, '-', 10)
 pikachu = Pokemon('Pikachu', 'Thunder', 10, 10, 5, 20, [thunderBolt])
 
-peepLup = Pokemon('Peeplup', 'Water', 10, 10, 5, 10, [])
 
-pikachu.useAbility(peepLup, 'Thunder Bolt')
+player.catchPokemon(pikachu, 'SuperBall')
 
-print(peepLup.info())
-print(pikachu.info())
+print(player.pokemons[0].name)
