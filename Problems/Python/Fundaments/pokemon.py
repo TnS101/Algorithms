@@ -4,7 +4,7 @@ class Player:
     def __init__(self, name, gender):
         self.name = name
         self.gender = gender
-        self.badges = 0
+        self.badges = []
         self.pokemons = []
         self.balls = []
 
@@ -15,7 +15,17 @@ class Player:
                     self.balls.remove(ball)
                     self.pokemons.append(pokemon)
                     break
+    
+    def browseBalls(self):
+        for ball in self.balls:
+            print(ball.name)
+
+    def getBadge(self, badge):
+        for invBadge in self.badges:
+            if invBadge.name == badge.name:
+                return
         
+        self.badges.append(badge)
 
 class Ball:
     def __init__(self, name, rarity, catchPercentage):
@@ -153,5 +163,3 @@ pikachu = Pokemon('Pikachu', 'Thunder', 10, 10, 5, 20, [thunderBolt])
 
 
 player.catchPokemon(pikachu, 'SuperBall')
-
-print(player.pokemons[0].name)
