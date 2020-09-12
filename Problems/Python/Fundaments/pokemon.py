@@ -1,5 +1,11 @@
 from random import randint
 
+class Badge:
+    def __init__(self, name, region):
+        self.name = name
+        self.region = region
+        
+
 class Player:
     def __init__(self, name, gender):
         self.name = name
@@ -20,7 +26,7 @@ class Player:
         for ball in self.balls:
             print(ball.name)
 
-    def getBadge(self, badge):
+    def takeBadge(self, badge):
         for invBadge in self.badges:
             if invBadge.name == badge.name:
                 return
