@@ -1,34 +1,37 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-
-namespace Interview_Prep
+﻿namespace Interview_Prep
 {
+    using Interview_Prep.ROITI;
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+
     public class Program
     {
         static void Main(string[] args)
         {
-            var arr = new int[] { 1, 2, 4, 5, 3, 8, -3, -1 };
-            var dict = new Dictionary<int, int>();
+            //First
+            Console.WriteLine(new FirstEx().Exe(new int[] { 10, 22, 11, -94, 33, 0, 5 }));
 
-            for (int i = 0; i < arr.Length; i++)
-            {
-                var num = Math.Abs(arr[i]);
+            //Second
+            Console.WriteLine(new SecondEx().Exe("2 beers or not 12.3 beers"));
 
-                if (!dict.ContainsKey(num))
-                {
-                    dict.Add(num, i);
-                }
-                else
-                {
-                    dict[num] += arr.Length;
-                }
-            }
+            //Third
+            var p1 = new Person("Peter ", 15);
+            var p2 = new Person("Ivan ", 23);
 
-            foreach (var item in dict.Where(n => n.Value >= arr.Length).OrderBy(n => n.Value))
-            {
-                Console.WriteLine($"{item.Key * -1} -> {item.Key}");
-            }
+            Console.WriteLine(Person.Compare(p1, p2));
+
+            //Forth
+
+            //[1] select Id, Name from Departments
+                  //inner join Employees as e on e.DepartmentId = null
+
+            //[2] select Id, Name from Departments
+                  //where select(Count(*) from Employees where DepartmentId = Id) < 3
+                  
+
+            //Fifth
+            new Pyramid().Exe(10);
         }
     }
 
