@@ -1,5 +1,10 @@
 from random import randint
 
+class Food:
+    def __init__(self, name, amount):
+        self.name = name
+        self.amount = amount
+
 class Badge:
     def __init__(self, name, region):
         self.name = name
@@ -13,6 +18,7 @@ class Player:
         self.badges = []
         self.pokemons = []
         self.balls = []
+        self.foods = []
 
     def catchPokemon(self, pokemon, ballName):
         for ball in self.balls:
@@ -33,6 +39,16 @@ class Player:
         
         self.badges.append(badge)
 
+    def eat(self, foodName):
+        message = ''
+        for food in self.foods:
+            if food.name == foodName:
+                message = '{} has ate {}!'
+                print(message.format(self.name, foodName))
+                return
+        message = 'Food with name : {} was not found!'
+        print(message.format(foodName))
+        
 class Ball:
     def __init__(self, name, rarity, catchPercentage):
         self.name = name
