@@ -5,6 +5,11 @@ class Food:
         self.name = name
         self.amount = amount
 
+class Drink:
+    def __init__(self, name, amount):
+        self.name = name
+        self.amount = amount
+
 class Badge:
     def __init__(self, name, region):
         self.name = name
@@ -19,6 +24,9 @@ class Player:
         self.pokemons = []
         self.balls = []
         self.foods = []
+        self.thirst = 10
+        self.hunger = 10
+        self.drinks = []
 
     def catchPokemon(self, pokemon, ballName):
         for ball in self.balls:
@@ -39,12 +47,26 @@ class Player:
         
         self.badges.append(badge)
 
+    def drink(self, drinkName):
+        message = ''
+        for drink in self.drinks:
+            if drink.name == drinkName:
+                message = '{} has drank {}!'
+                print(message.format(self.name, drinkName))
+                self.thirst -= drink.amount
+                if self.thirst < 0 : self.thirst = 0
+                return
+        message = 'Drink with name : {} was not found!'
+        print(message.format(drinkName))
+
     def eat(self, foodName):
         message = ''
         for food in self.foods:
             if food.name == foodName:
                 message = '{} has ate {}!'
                 print(message.format(self.name, foodName))
+                self.hunger -= food.amount
+                if self.hunger < 0: self.hunger = 0
                 return
         message = 'Food with name : {} was not found!'
         print(message.format(foodName))
