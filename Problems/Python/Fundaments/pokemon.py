@@ -1,5 +1,11 @@
 from random import randint
 
+class Bike:
+    def __init__(self, name, speed, price):
+        self.name = name
+        self.speed = speed
+        self.price = price
+
 class Food:
     def __init__(self, name, amount):
         self.name = name
@@ -27,6 +33,7 @@ class Player:
         self.thirst = 10
         self.hunger = 10
         self.drinks = []
+        self.bike = {}
 
     def catchPokemon(self, pokemon, ballName):
         for ball in self.balls:
@@ -71,6 +78,12 @@ class Player:
         message = 'Food with name : {} was not found!'
         print(message.format(foodName))
         
+    def travel(self):
+        if self.bike == {}:
+            print('Cannot travel without Bike!')
+            return
+        message = '{} has travelled {} km!'
+        print(message.format(self.name, bike.speed))
 class Ball:
     def __init__(self, name, rarity, catchPercentage):
         self.name = name
