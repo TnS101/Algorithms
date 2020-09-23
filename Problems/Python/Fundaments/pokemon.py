@@ -83,7 +83,7 @@ class Player:
             print('Cannot travel without Bike!')
             return
         message = '{} has travelled {} km!'
-        print(message.format(self.name, bike.speed))
+        print(message.format(self.name, self.bike.speed))
 class Ball:
     def __init__(self, name, rarity, catchPercentage):
         self.name = name
