@@ -33,7 +33,7 @@ class Player:
         self.thirst = 10
         self.hunger = 10
         self.drinks = []
-        self.bike = {}
+        self.bike = None
 
     def catchPokemon(self, pokemon, ballName):
         for ball in self.balls:
@@ -79,7 +79,7 @@ class Player:
         print(message.format(foodName))
         
     def travel(self):
-        if self.bike == {}:
+        if self.bike == None:
             print('Cannot travel without Bike!')
             return
         message = '{} has travelled {} km!'
