@@ -58,7 +58,7 @@ class Player:
         message = ''
         for drink in self.drinks:
             if drink.name == drinkName:
-                message = '{} has drank {} amount of {}!'
+                message = '{} has drank {} liers of {}!'
                 print(message.format(self.name, drink.amount, drinkName))
                 self.thirst -= drink.amount
                 if self.thirst < 0 : self.thirst = 0
@@ -70,7 +70,7 @@ class Player:
         message = ''
         for food in self.foods:
             if food.name == foodName:
-                message = '{} has ate {} amount of {}!'
+                message = '{} has ate {} kilograms of {}!'
                 print(message.format(self.name, food.amount, foodName))
                 self.hunger -= food.amount
                 if self.hunger < 0: self.hunger = 0
