@@ -1,5 +1,11 @@
 from random import randint
 
+class Potion:
+    def __init__(self,name,attribute,amount):
+        self.name = name
+        self.attribute = attribute
+        self.amount = amount
+
 class Bike:
     def __init__(self, name, speed, price):
         self.name = name
@@ -34,6 +40,7 @@ class Player:
         self.hunger = 10
         self.drinks = []
         self.bike = None
+        self.potions = []
 
     def catchPokemon(self, pokemon, ballName):
         for ball in self.balls:
@@ -84,6 +91,30 @@ class Player:
             return
         message = '{} has travelled {} km!'
         print(message.format(self.name, self.bike.speed))
+
+    def usePotion(self, pokemonName, potionName):
+        message = ''
+        targetPokemon = None
+        for pokemon in self.pokemons:
+            if pokemon.name == pokemonName:
+                targetPokemon = pokemon
+                
+        if targetPokemon == None:
+            message = 'Pokemon with name {} does not exist in your current arsenal!'
+            print(message.format(pokemonName))
+            return
+        
+        for potion in self.potions:
+            if potion.name == potionName:
+                targetPokemon.__setattr__(potion.attribute, potion.amount)
+                message = '{} replenished {} points of {}'
+                print(message.format(pokemonName, potion.amount, potion.attribute))
+                return
+        
+        message = 'Potion with name {} does not exist in your current arsenal!'
+        print(message.format(potionName))
+        return
+
 class Ball:
     def __init__(self, name, rarity, catchPercentage):
         self.name = name
