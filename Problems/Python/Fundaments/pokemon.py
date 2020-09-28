@@ -156,7 +156,7 @@ class Ability:
      
 
 class Pokemon:
-    def __init__(self, name, element, hunger, thirst, attack, health, abilities):
+    def __init__(self, name, element, hunger, thirst, attack, health, abilities, critChance):
         self.name = name
         self.element = element
         self.hunger = hunger
@@ -165,6 +165,7 @@ class Pokemon:
         self.attack = attack
         self.health = health
         self.abilities = abilities
+        self.critChance = critChance
 
     def feed(self, amount):
         if self.hunger == 0:
@@ -218,11 +219,19 @@ class Pokemon:
             print('Pokemon is Thirsty!')
             return
 
-        pokemon.health -= self.attack
+        damageAmplifier = 1
+
+        message = '{} was hit by {} for {} Damage!'
+        
+        if self.critChance > 10:    
+            damageAmplifier *= 2
+            message = '{} was critically hit by {} for {} Damage!'
+
+        pokemon.health -= self.attack * damageAmplifier
         self.energy -= 1
         self.hunger -= 1
         self.thirst -= 1
-        message = '{} was hit by {} for {} Damage!'
+        
         print(message.format(pokemon.name, self.name, self.attack))
 
     def useAbility(self, pokemon, abilityName):
