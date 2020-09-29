@@ -106,7 +106,7 @@ class Player:
         
         for potion in self.potions:
             if potion.name == potionName:
-                targetPokemon.__setattr__(potion.attribute, potion.amount)
+                targetPokemon.__setattr__(potion.attribute.lower(), potion.amount)
                 message = '{} replenished {} points of {}'
                 print(message.format(pokemonName, potion.amount, potion.attribute))
                 return
@@ -134,26 +134,33 @@ class Ball:
             return False    
 
 class Ability:
-    def __init__(self, name, aType, element, power, operator, energy):
+    def __init__(self, name, aType, element, power, operator, energy, scale):
         self.name = name
         self.aType = aType
         self.element = element
         self.power = power
         self.operator = operator
         self.energy = energy
+        self.level = 0
+        self.scale = scale
     
     def use(self, pokemon):
         self.energy -= 1
         value = pokemon.__getattribute__(self.aType.lower())
+        bonus = self.level * self.scale
 
         if self.operator == '+':
-            pokemon.__setattr__(self.aType.lower(), value + self.power)
+            pokemon.__setattr__(self.aType.lower(), value + bonus)
         else:
-            pokemon.__setattr__(self.aType.lower(), value - self.power)
+            pokemon.__setattr__(self.aType.lower(), value - bonus)
         
         message = '{} was used on {}'
         print(message.format(self.name, pokemon.name))
-     
+    
+    def levelUp(self):
+        self.level += 1
+        message = 'Ability : {} was leveled up to level : {}'
+        print(message.format(self.name, self.level))
 
 class Pokemon:
     def __init__(self, name, element, hunger, thirst, attack, health, abilities, critChance):
@@ -166,6 +173,10 @@ class Pokemon:
         self.health = health
         self.abilities = abilities
         self.critChance = critChance
+        self.xp = 0
+        self.xpCap = 100
+        self.level = 1
+        self.abilityPoints = 1
 
     def feed(self, amount):
         if self.hunger == 0:
@@ -250,13 +261,35 @@ class Pokemon:
         self.energy -= 1        
         ability.use(pokemon)
 
+    def winBattle(self, pokemon):
+        self.xp += pokemon.health / 5 + pokemon.attack / 2
+
+        if self.xp > self.xpCap:
+            self.xp -= self.xpCap
+            self.xpCap += 0.15 * self.xpCap
+            self.level += 1
+            self.abilityPoints += 1
+
+            message = '{} has leveled up to level : {}'
+            print(message.format(self.name, self.level))
+
+    def upgradeAbility(self, abilityName):
+        for ability in self.abilities:
+            if abilityName == ability.name:
+                ability.levelUp()
+                self.abilityPoints -= 1
+                return
+        
+        message = 'Ability with name : {} was not found!'
+        print(message.format(abilityName))
+
 player = Player('Ash', 'Male')
 superBall = Ball('SuperBall', 1, 100)
 
 player.balls.append(superBall)
 
-thunderBolt = Ability('Thunder Bolt', 'Health', 'Thunder', 5, '-', 10)
-pikachu = Pokemon('Pikachu', 'Thunder', 10, 10, 5, 20, [thunderBolt])
+thunderBolt = Ability('Thunder Bolt', 'Health', 'Thunder', 5, '-', 10, 2)
+pikachu = Pokemon('Pikachu', 'Thunder', 10, 10, 5, 20, [thunderBolt], 10)
 
 
 player.catchPokemon(pikachu, 'SuperBall')
