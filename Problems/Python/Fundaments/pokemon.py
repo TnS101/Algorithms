@@ -177,6 +177,7 @@ class Pokemon:
         self.xpCap = 100
         self.level = 1
         self.abilityPoints = 1
+        self.statPoints = 0
 
     def feed(self, amount):
         if self.hunger == 0:
@@ -269,11 +270,17 @@ class Pokemon:
             self.xpCap += 0.15 * self.xpCap
             self.level += 1
             self.abilityPoints += 1
+            self.statPoints += 1
 
             message = '{} has leveled up to level : {}'
             print(message.format(self.name, self.level))
 
     def upgradeAbility(self, abilityName):
+        if self.abilityPoints < 1:
+            self.abilityPoints = 0
+            print('Not enough Ability Points!')
+            return
+        
         for ability in self.abilities:
             if abilityName == ability.name:
                 ability.levelUp()
@@ -282,6 +289,21 @@ class Pokemon:
         
         message = 'Ability with name : {} was not found!'
         print(message.format(abilityName))
+    
+    def upgradeStats(self, statName):
+        if self.statPoints < 1:
+            self.statPoints = 0
+            print('Not enough Stat Points!')
+            return
+
+        attr = self.__getattribute__(statName)
+        amplifier = {'Health' : 2, 'Crit' : 0.15 , 'Attack' : 0.5}
+
+        self.statPoints -= 1
+        self.__setattr__(statName, attr + 1 * amplifier.__getattribute__(statName))
+
+        message = '{} Stat was chosen! New {} : {}'
+        print(message.format(statName, statName, self.__getattribute__(statName)))
 
 player = Player('Ash', 'Male')
 superBall = Ball('SuperBall', 1, 100)
