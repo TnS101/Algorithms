@@ -178,6 +178,7 @@ class Pokemon:
         self.level = 1
         self.abilityPoints = 1
         self.statPoints = 0
+        self.happiness = 10
 
     def feed(self, amount):
         if self.hunger == 0:
@@ -263,7 +264,8 @@ class Pokemon:
         ability.use(pokemon)
 
     def winBattle(self, pokemon):
-        self.xp += pokemon.health / 5 + pokemon.attack / 2
+        self.xp += pokemon.health / 5 + pokemon.attack / 2 + pokemon.level * self.hapiness / 8
+        self.happinessDec()
 
         if self.xp > self.xpCap:
             self.xp -= self.xpCap
@@ -274,6 +276,19 @@ class Pokemon:
 
             message = '{} has leveled up to level : {}'
             print(message.format(self.name, self.level))
+
+    def loseBattle(self, pokemonName):
+        self.health = 0
+        self.happinessDec()
+
+        message = '{} has lost a Battle against : {}'
+        print(message.format(self.name, pokemonName))
+
+    def happinessDec(self):
+        self.happiness -= 1
+
+        if self.happiness < 0:
+            self.happiness = 0
 
     def upgradeAbility(self, abilityName):
         if self.abilityPoints < 1:
