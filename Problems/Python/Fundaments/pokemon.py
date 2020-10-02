@@ -1,5 +1,10 @@
 from random import randint
 
+class EvolutionStone:
+    def __init__(self, name, pokemonName):
+        self.name = name
+        self.pokemonName = pokemonName
+
 class Potion:
     def __init__(self,name,attribute,amount):
         self.name = name
@@ -41,6 +46,7 @@ class Player:
         self.drinks = []
         self.bike = None
         self.potions = []
+        self.evolutionStones = []
 
     def catchPokemon(self, pokemon, ballName):
         for ball in self.balls:
@@ -111,9 +117,29 @@ class Player:
                 print(message.format(pokemonName, potion.amount, potion.attribute))
                 return
         
-        message = 'Potion with name {} does not exist in your current arsenal!'
+        message = 'Potion with name : {} does not exist in your current arsenal!'
         print(message.format(potionName))
-        return
+
+    def evolvePokemon(self, pokemonName, stoneName):
+        message = ''
+        targetPokemon = None
+
+        for pokemon in self.pokemons:
+            if pokemon.name == pokemonName:
+               targetPokemon = pokemon
+        
+        if targetPokemon == None:
+            message = 'Pokemon with name {} does not exist in your current arsenal!'
+            print(message.format(pokemonName))
+            return
+
+        for stone in self.evolutionStones:
+            if stone.name == stoneName:
+                targetPokemon.evolve()
+                return
+
+        message = 'Evolution Stone with name : {} does not exist in your current arsenal!'
+        print(message.format(stoneName))
 
 class Ball:
     def __init__(self, name, rarity, catchPercentage):
@@ -163,7 +189,7 @@ class Ability:
         print(message.format(self.name, self.level))
 
 class Pokemon:
-    def __init__(self, name, element, hunger, thirst, attack, health, abilities, critChance):
+    def __init__(self, name, element, hunger, thirst, attack, health, abilities, critChance, attackEvo, healthEvo, critEvo, attackScale, healthScale, critScale, evolveName):
         self.name = name
         self.element = element
         self.hunger = hunger
@@ -178,7 +204,16 @@ class Pokemon:
         self.level = 1
         self.abilityPoints = 1
         self.statPoints = 0
-        self.happiness = 10
+        self.happiness = 10 
+
+        self.evolveName = evolveName
+        self.attackEvo = attackEvo      
+        self.healthEvo = healthEvo
+        self.critEvo = critEvo
+
+        self.attackScale = attackScale
+        self.healthScale = healthScale
+        self.critScale = critScale
 
     def feed(self, amount):
         if self.hunger == 0:
@@ -197,6 +232,18 @@ class Pokemon:
 
         if self.energy > 10:
             self.energy = 10
+
+    def evolve(self):
+        self.attackScale = self.attackEvo
+        self.healthScale = self.healthEvo
+        self.critScale = self.critScale
+
+        self.attack += 10 * self.attackScale
+        self.health += 10 * self.healthScale
+        self.critChance += 10 * self.critChance
+
+        message = '{} has Evolved into : {}'
+        print(message.format(self.name, self.evolveName))
 
     def info(self):
         message = '\n-----------\n Name : {}\n Element : {}\n Hunger : {}\n Thirst : {}\n Energy : {}\n Attack : {}\n Health : {}\n-----------\n'
@@ -264,7 +311,7 @@ class Pokemon:
         ability.use(pokemon)
 
     def winBattle(self, pokemon):
-        self.xp += pokemon.health / 5 + pokemon.attack / 2 + pokemon.level * self.hapiness / 8
+        self.xp += pokemon.health / 5 + pokemon.attack / 2 + pokemon.level * self.happiness / 8
         self.happinessDec()
 
         if self.xp > self.xpCap:
@@ -273,6 +320,10 @@ class Pokemon:
             self.level += 1
             self.abilityPoints += 1
             self.statPoints += 1
+
+            self.attack += self.attackScale
+            self.health += self.healthScale
+            self.critChance += self.critScale
 
             message = '{} has leveled up to level : {}'
             print(message.format(self.name, self.level))
@@ -326,7 +377,7 @@ superBall = Ball('SuperBall', 1, 100)
 player.balls.append(superBall)
 
 thunderBolt = Ability('Thunder Bolt', 'Health', 'Thunder', 5, '-', 10, 2)
-pikachu = Pokemon('Pikachu', 'Thunder', 10, 10, 5, 20, [thunderBolt], 10)
+pikachu = Pokemon('Pikachu', 'Thunder', 10, 10, 5, 20, [thunderBolt], 10, 2, 3, 0.1, 2, 5, 0.02, 'Raichu')
 
 
 player.catchPokemon(pikachu, 'SuperBall')
