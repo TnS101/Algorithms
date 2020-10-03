@@ -1,15 +1,17 @@
 from random import randint
 
 class EvolutionStone:
-    def __init__(self, name, pokemonName):
+    def __init__(self, name, pokemonName, price):
         self.name = name
         self.pokemonName = pokemonName
+        self.price = price
 
 class Potion:
-    def __init__(self,name,attribute,amount):
+    def __init__(self, name, attribute, amount, price):
         self.name = name
         self.attribute = attribute
         self.amount = amount
+        self.price = price
 
 class Bike:
     def __init__(self, name, speed, price):
@@ -18,14 +20,16 @@ class Bike:
         self.price = price
 
 class Food:
-    def __init__(self, name, amount):
+    def __init__(self, name, amount, price):
         self.name = name
         self.amount = amount
+        self.price = price
 
 class Drink:
-    def __init__(self, name, amount):
+    def __init__(self, name, amount, price):
         self.name = name
         self.amount = amount
+        self.price = price
 
 class Badge:
     def __init__(self, name, region):
@@ -47,6 +51,7 @@ class Player:
         self.bike = None
         self.potions = []
         self.evolutionStones = []
+        self.money = 100
 
     def catchPokemon(self, pokemon, ballName):
         for ball in self.balls:
@@ -140,6 +145,42 @@ class Player:
 
         message = 'Evolution Stone with name : {} does not exist in your current arsenal!'
         print(message.format(stoneName))
+
+    def freePokemon(self, pokemonName):
+        message = ''
+        for pokemon in self.pokemons:
+            if pokemon.name == pokemonName:
+                self.pokemons.remove(pokemon)
+                message = 'Pokemon : {} was removed from your arsenal!'
+                print(message.format(pokemonName))
+                return
+
+        message = 'Pokemon with name : {} does not exist in your current arsenal!'
+        print(message.format(pokemonName))        
+
+    def sellPokemon(self, pokemonName):
+        message = ''
+        for pokemon in self.pokemons:
+            if pokemon.name == pokemonName:
+                self.pokemons.remove(pokemon)
+                price = pokemon.health + pokemon.attack * 3 + pokemon.critChance * 20
+                self.money += price
+
+                message = 'Pokemon : {} was sold for {}'
+                print(message.format(pokemonName, price))
+
+    def buyItem(self, item):
+        message = ''
+
+        if item.price > self.money:
+            message = 'Your current balance is insufficient in order to buy Item with name : {}'
+            print(message.format(item.name))
+            return
+
+        self.money -= item.price
+
+        message = 'Item : {} was succesfuly bought!'
+        print(message.format(item.name))
 
 class Ball:
     def __init__(self, name, rarity, catchPercentage):
