@@ -169,7 +169,7 @@ class Player:
                 message = 'Pokemon : {} was sold for {}'
                 print(message.format(pokemonName, price))
 
-    def buyItem(self, item):
+    def buyItem(self, item, itemType):
         message = ''
 
         if item.price > self.money:
@@ -178,6 +178,16 @@ class Player:
             return
 
         self.money -= item.price
+        if itemType == 'Potion':
+            self.potions.append(item)
+        if itemType == 'Evolution Stone':
+            self.evolutionStones.append(item)
+        if itemType == 'Ball':
+            self.balls.append(item)
+        if itemType == 'Drink':
+            self.balls.append(item)
+        if itemType == 'Food':
+            self.foods.append(item)
 
         message = 'Item : {} was succesfuly bought!'
         print(message.format(item.name))
