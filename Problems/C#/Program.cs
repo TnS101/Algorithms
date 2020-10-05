@@ -1,37 +1,64 @@
-﻿namespace Interview_Prep
-{
-    using Interview_Prep.ROITI;
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
+﻿using System;
+using System.Collections.Generic;
+using System.Text;
 
+namespace Interview_Prep
+{
     public class Program
     {
         static void Main(string[] args)
         {
-            //First
-            Console.WriteLine(new FirstEx().Exe(new int[] { 10, 22, 11, -94, 33, 0, 5 }));
+            Res();
+        }
 
-            //Second
-            Console.WriteLine(new SecondEx().Exe("2 beers or not 12.3 beers"));
+        static string Res()
+        {
+            int input = 20;
 
-            //Third
-            var p1 = new Person("Peter ", 15);
-            var p2 = new Person("Ivan ", 23);
+            var counter = 90;
 
-            Console.WriteLine(Person.Compare(p1, p2));
+            var result = new Stack<char>();
 
-            //Forth
+            while (true)
+            {
+                var curr = counter - 64;
+                var charIndex = curr * ((curr - 1) * 3 + 3) + (curr - 1) * 3 + 3;
+                var currSubstr = 0;
 
-            //[1] select Id, Name from Departments
-                  //inner join Employees as e on e.DepartmentId = null
+                if (charIndex == 0)
+                {
+                    Console.WriteLine(string.Join("", result));
+                    return string.Join("", result);
+                }
 
-            //[2] select Id, Name from Departments
-                  //where select(Count(*) from Employees where DepartmentId = Id) < 3
-                  
+                Console.WriteLine(charIndex);
+                Console.WriteLine((char)(counter));
 
-            //Fifth
-            new Pyramid().Exe(10);
+                if (input > charIndex)
+                {
+                    if (counter == 64)
+                    {
+                        currSubstr = 1;
+                        result.Push('A');
+                    }
+                    else
+                    {
+                        currSubstr = charIndex;
+                        result.Push((char)counter);
+                    }
+
+                    input -= currSubstr;
+
+                    if (input <= currSubstr)
+                    {
+                        counter--;
+                    }
+                }
+                else
+                {
+                    counter--;
+                }
+            }
         }
     }
 
