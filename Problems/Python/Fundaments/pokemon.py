@@ -268,7 +268,8 @@ class Pokemon:
 
     def feed(self, amount):
         if self.hunger == 0:
-            print('Pokemon is not Hungry!')
+            message = '{} is not Hungry at the moment!'
+            print(message.format(self.name))
             return
 
         self.hunger -= amount
@@ -302,7 +303,8 @@ class Pokemon:
 
     def irrigate(self, amount):
         if self.thirst == 0:
-            print('Pokemon is not Thirsty!')
+            message = '{} is not Thristy at the moment!'
+            print(message.format(self.name))
             return
 
         self.thirst -= amount
@@ -321,13 +323,16 @@ class Pokemon:
 
     def basicAttack(self, pokemon):
         if self.energy == 0:
-            print('No enough Energy!')
+            message = '{} has not enough Energy to perform a Basic Attack!'
+            print(message.format(self.name))
             return
         if self.hunger > 5:
-            print('Pokemon is Hungry!')
+            message = '{} is Hungry and cannot perform a Basic Attack!'
+            print(message.format(self.name))
             return
         if self.thirst > 5:
-            print('Pokemon is Thirsty!')
+            message = '{} is Thristy and cannot perfrom a Basic Attack!'
+            print(message.format(self.name))
             return
 
         damageAmplifier = 1
@@ -347,7 +352,8 @@ class Pokemon:
 
     def useAbility(self, pokemon, abilityName):
         if self.energy == 0:
-            print('No enough Energy!')
+            message = '{} has not enough Energy to perform : {}'
+            print(message.format(self.name, abilityName))
             return
 
         ability = {}
