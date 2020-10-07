@@ -433,8 +433,9 @@ superBall = Ball('SuperBall', 1, 100)
 
 player.balls.append(superBall)
 
+bubblegun = Ability('Bubble Gun', 'Health', 'Water', 6, '-', 8, 3)
 thunderBolt = Ability('Thunder Bolt', 'Health', 'Thunder', 5, '-', 10, 2)
 pikachu = Pokemon('Pikachu', 'Thunder', 10, 10, 5, 20, [thunderBolt], 10, 2, 3, 0.1, 2, 5, 0.02, 'Raichu')
-
+peeplup = Pokemon('Peeplup', 'Water', 8, 10, 6, 10, [bubblegun], 12, 1, 20, 0.08, 1, 2, 0.06, 'Empoleon')
 
 player.catchPokemon(pikachu, 'SuperBall')
