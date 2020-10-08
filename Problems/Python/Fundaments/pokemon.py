@@ -1,5 +1,43 @@
 from random import randint
 
+class Passive:
+    def __init__(self, name, conditionAttr, value, operator, rewardAttr, rewardValue):
+        self.name = name
+        self.conditionAttr = conditionAttr
+        self.value = value
+        self.operator = operator
+        self.rewardAttr = rewardAttr
+        self.rewardValue = rewardValue
+    
+    def isSatisfied(self, target):
+        targetValue = target.__getattribute__(self.conditionAttr.lower)
+        successMessage = 'Condition for Attribute : {} is satisfied! {} {} {} == true!'
+        errorMessage = 'Condition for Attribute : {} was not satisfied! {} {} {} == False!'
+
+        if self.operator == '>':
+            if self.value > targetValue:
+               print(successMessage.format(self.conditionAttr, self.value, self.operator, targetValue))
+            else:
+                print(errorMessage.format(self.conditionAttr, self.value, self.operator, targetValue))
+                return
+
+        if self.operator == '<':
+            if self.value < targetValue:
+               print(successMessage.format(self.conditionAttr, self.value, self.operator, targetValue))
+            else:
+                print(errorMessage.format(self.conditionAttr, self.value, self.operator, targetValue))
+                return
+
+        if self.operator == '=':
+            if self.value == targetValue:
+                print(successMessage.format(self.conditionAttr, self.value, self.operator, targetValue))
+            else:
+                print(errorMessage.format(self.conditionAttr, self.value, self.operator, targetValue))
+                return
+
+        target.__setattr__(self.rewardAttr, targetValue + self.rewardValue)
+
+
 class EvolutionStone:
     def __init__(self, name, pokemonName, price):
         self.name = name
