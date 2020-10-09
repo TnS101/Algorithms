@@ -19,23 +19,24 @@ class Passive:
                print(successMessage.format(self.conditionAttr, self.value, self.operator, targetValue))
             else:
                 print(errorMessage.format(self.conditionAttr, self.value, self.operator, targetValue))
-                return
+                return False
 
         if self.operator == '<':
             if self.value < targetValue:
                print(successMessage.format(self.conditionAttr, self.value, self.operator, targetValue))
             else:
                 print(errorMessage.format(self.conditionAttr, self.value, self.operator, targetValue))
-                return
+                return False
 
         if self.operator == '=':
             if self.value == targetValue:
                 print(successMessage.format(self.conditionAttr, self.value, self.operator, targetValue))
             else:
                 print(errorMessage.format(self.conditionAttr, self.value, self.operator, targetValue))
-                return
+                return False
 
         target.__setattr__(self.rewardAttr, targetValue + self.rewardValue)
+        return True
 
 
 class EvolutionStone:
@@ -249,7 +250,7 @@ class Ball:
             return False    
 
 class Ability:
-    def __init__(self, name, aType, element, power, operator, energy, scale):
+    def __init__(self, name, aType, element, power, operator, energy, scale, passives):
         self.name = name
         self.aType = aType
         self.element = element
@@ -258,11 +259,15 @@ class Ability:
         self.energy = energy
         self.level = 0
         self.scale = scale
+        self.passives = passives
     
     def use(self, pokemon):
         self.energy -= 1
         value = pokemon.__getattribute__(self.aType.lower())
         bonus = self.level * self.scale
+
+        for passive in self.passives:
+            passive.isSatisfied(pokemon)
 
         if self.operator == '+':
             pokemon.__setattr__(self.aType.lower(), value + bonus)
@@ -278,7 +283,7 @@ class Ability:
         print(message.format(self.name, self.level))
 
 class Pokemon:
-    def __init__(self, name, element, hunger, thirst, attack, health, abilities, critChance, attackEvo, healthEvo, critEvo, attackScale, healthScale, critScale, evolveName):
+    def __init__(self, name, element, hunger, thirst, attack, health, abilities, critChance, attackEvo, healthEvo, critEvo, attackScale, healthScale, critScale, evolveName, passives):
         self.name = name
         self.element = element
         self.hunger = hunger
@@ -293,7 +298,8 @@ class Pokemon:
         self.level = 1
         self.abilityPoints = 1
         self.statPoints = 0
-        self.happiness = 10 
+        self.happiness = 10
+        self.passives = passives
 
         self.evolveName = evolveName
         self.attackEvo = attackEvo      
@@ -374,6 +380,9 @@ class Pokemon:
             return
 
         damageAmplifier = 1
+
+        for passive in self.passives:
+            passive.isSatisfied(pokemon)
 
         message = '{} was hit by {} for {} Damage!'
         
@@ -471,9 +480,16 @@ superBall = Ball('SuperBall', 1, 100)
 
 player.balls.append(superBall)
 
-bubblegun = Ability('Bubble Gun', 'Health', 'Water', 6, '-', 8, 3)
-thunderBolt = Ability('Thunder Bolt', 'Health', 'Thunder', 5, '-', 10, 2)
-pikachu = Pokemon('Pikachu', 'Thunder', 10, 10, 5, 20, [thunderBolt], 10, 2, 3, 0.1, 2, 5, 0.02, 'Raichu')
-peeplup = Pokemon('Peeplup', 'Water', 8, 10, 6, 10, [bubblegun], 12, 1, 20, 0.08, 1, 2, 0.06, 'Empoleon')
+bubblegunPassive = Passive('Bubbgle Gun Passive', 'Health', 10, '>', 'Attack', 2)
+thunderBoltPassive = Passive('Thunderbolt Passive', 'Health', 5, '<', 'CritChance', 5)
+
+pikachuPassive = Passive('Pikachu Passive', 'Attack', 5, '<', 'CritChance', 5)
+peeplupPassive = Passive('Peeplup Passive', 'Health', 6, '<', 'Attack', 2)
+
+bubblegun = Ability('Bubble Gun', 'Health', 'Water', 6, '-', 8, 3, [bubblegunPassive])
+thunderBolt = Ability('Thunder Bolt', 'Health', 'Thunder', 5, '-', 10, 2, [thunderBoltPassive])
+
+pikachu = Pokemon('Pikachu', 'Thunder', 10, 10, 5, 20, [thunderBolt], 10, 2, 3, 0.1, 2, 5, 0.02, 'Raichu', [pikachuPassive])
+peeplup = Pokemon('Peeplup', 'Water', 8, 10, 6, 10, [bubblegun], 12, 1, 20, 0.08, 1, 2, 0.06, 'Empoleon', [peeplupPassive])
 
 player.catchPokemon(pikachu, 'SuperBall')
