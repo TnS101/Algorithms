@@ -53,10 +53,15 @@ class Potion:
         self.price = price
 
 class Bike:
-    def __init__(self, name, speed, price):
+    def __init__(self, name, speed, price, upgradeIngridients):
         self.name = name
         self.speed = speed
         self.price = price
+        self.upgradeIngridients = upgradeIngridients
+    
+    def upgrade(self):
+        self.speed *= 2
+        print('Bike Upgraded!')
 
 class Food:
     def __init__(self, name, amount, price):
@@ -91,6 +96,7 @@ class Player:
         self.potions = []
         self.evolutionStones = []
         self.money = 100
+        self.materials = []
 
     def catchPokemon(self, pokemon, ballName):
         for ball in self.balls:
@@ -207,6 +213,18 @@ class Player:
 
                 message = 'Pokemon : {} was sold for {}'
                 print(message.format(pokemonName, price))
+
+    def upgradeBike(self):
+            for ingridient in self.bike.upgradeIngridients:
+                if ingridient not in self.materials:
+                    message = 'Missing ingridient : {}'
+                    print(message.format(ingridient))
+                    return
+            
+            self.bike.upgrade()
+
+            for ingridient in self.bike.upgradeIngridients:
+                self.materials.remove(ingridient)
 
     def buyItem(self, item, itemType):
         message = ''
