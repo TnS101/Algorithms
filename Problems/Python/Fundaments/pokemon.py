@@ -196,7 +196,7 @@ class Player:
         for pokemon in self.pokemons:
             if pokemon.name == pokemonName:
                 self.pokemons.remove(pokemon)
-                message = 'Pokemon : {} was removed from your arsenal!'
+                message = 'Pokemon with name : {} was removed from your arsenal!'
                 print(message.format(pokemonName))
                 return
 
@@ -211,13 +211,13 @@ class Player:
                 price = pokemon.health + pokemon.attack * 3 + pokemon.critChance * 20
                 self.money += price
 
-                message = 'Pokemon : {} was sold for {}'
+                message = 'Pokemon with name : {} was sold for {}'
                 print(message.format(pokemonName, price))
 
     def upgradeBike(self):
             for ingridient in self.bike.upgradeIngridients:
                 if ingridient not in self.materials:
-                    message = 'Missing ingridient : {}'
+                    message = 'The following ingridient is missing : {}'
                     print(message.format(ingridient))
                     return
             
