@@ -11,6 +11,30 @@ namespace Interview_Prep
             Res();
         }
 
+        static void Pyramid(int n)
+        {
+            var curr = 1;
+            var line = string.Empty;
+            Console.WriteLine(curr);
+
+            var step = curr == 1 ? 1 : 0;
+
+            for (int j = 0; j < n; j++)
+            {
+                for (int index = curr + 1; index <= curr + 2 + j * 2 + step; index++)
+                {
+                    n--;
+
+                    if (n == 0) break;
+                    line += index;
+                }
+
+                curr += 2 + j * 2;
+                Console.WriteLine(line);
+                line = string.Empty;
+            }
+        }
+
         static string Res()
         {
             int input = 20;
